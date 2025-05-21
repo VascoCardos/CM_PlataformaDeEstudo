@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/v_logo"
+        android:icon="@drawable/v_education_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/v_logo"
+        android:roundIcon="@drawable/v_education_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.EducationPlatform">
         
