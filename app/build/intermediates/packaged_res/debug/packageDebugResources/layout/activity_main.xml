@@ -55,15 +55,20 @@
                     android:layout_height="1dp"
                     android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/btnProfile"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/circle_background"
+                <!-- Profile Photo Button -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/btnProfilePhoto"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/ic_person"
-                    android:contentDescription="Profile"
-                    android:padding="6dp"
-                    app:tint="@color/white" />
+                    android:background="@drawable/profile_circle_background"
+                    android:scaleType="centerCrop"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/white"
+                    android:contentDescription="Profile" />
 
             </LinearLayout>
 
@@ -135,6 +140,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:paddingHorizontal="16dp"
+            android:clipToPadding="false"
+            android:paddingVertical="4dp"
             app:layout_constraintTop_toBottomOf="@+id/popularSection" />
 
         <!-- Categories RecyclerView -->
@@ -142,8 +149,10 @@
             android:id="@+id/rvCategories"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:paddingHorizontal="16dp"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
             app:layout_constraintTop_toBottomOf="@+id/rvPopular" />
 
@@ -335,7 +344,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Navigation Drawer (unchanged) -->
+    <!-- Navigation Drawer -->
     <LinearLayout
         android:id="@+id/navigationDrawer"
         android:layout_width="300dp"
@@ -366,15 +375,17 @@
             android:gravity="center_vertical">
 
             <!-- Profile Image -->
-            <ImageView
-                android:id="@+id/ivProfileImage"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivDrawerProfileImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/profile_circle_background"
                 android:padding="8dp"
                 android:src="@drawable/ic_person"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/orange_start" />
 
             <!-- User Info -->
             <LinearLayout
@@ -384,7 +395,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvUserName"
+                    android:id="@+id/tvDrawerUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Vasco Cardoso"
@@ -393,7 +404,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvUserEmail"
+                    android:id="@+id/tvDrawerUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -405,7 +416,7 @@
 
             <!-- Edit Button -->
             <TextView
-                android:id="@+id/btnEditProfile"
+                android:id="@+id/btnDrawerEditProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"

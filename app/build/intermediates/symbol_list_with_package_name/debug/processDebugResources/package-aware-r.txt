@@ -3260,6 +3260,7 @@ id btnCreate
 id btnCreateAccount
 id btnCreateSession
 id btnCreateStudy
+id btnDrawerEditProfile
 id btnDrawerLogout
 id btnEditProfile
 id btnFollow
@@ -3268,6 +3269,7 @@ id btnLogin
 id btnMenu
 id btnMyStudies
 id btnProfile
+id btnProfilePhoto
 id btnRemove
 id btnSignUp
 id buttonPanel
@@ -3418,10 +3420,10 @@ id invisible
 id inward
 id italic
 id item_touch_helper_previous_elevation
+id ivDrawerProfileImage
 id ivIllustration
 id ivLogo
 id ivLogoWithName
-id ivProfileImage
 id ivProfilePhoto
 id ivSubjectImage
 id ivToggleConfirmPassword
@@ -3697,6 +3699,8 @@ id tvCreateAccount
 id tvCreateAccountTitle
 id tvDescription
 id tvDifficulty
+id tvDrawerUserEmail
+id tvDrawerUserName
 id tvEstimatedHours
 id tvFollowers
 id tvForgotPassword

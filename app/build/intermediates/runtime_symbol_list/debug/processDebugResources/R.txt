@@ -3259,6 +3259,7 @@ int id btnCreate 0x7f08006a
 int id btnCreateAccount 0x7f08006b
 int id btnCreateSession 0x7f08006c
 int id btnCreateStudy 0x7f08006d
+int id btnDrawerEditProfile 0x7f08025e
 int id btnDrawerLogout 0x7f08006e
 int id btnEditProfile 0x7f080070
 int id btnFollow 0x7f080072
@@ -3267,6 +3268,7 @@ int id btnLogin 0x7f080074
 int id btnMenu 0x7f080075
 int id btnMyStudies 0x7f080076
 int id btnProfile 0x7f080077
+int id btnProfilePhoto 0x7f080262
 int id btnRemove 0x7f080078
 int id btnSignUp 0x7f080079
 int id buttonPanel 0x7f08007a
@@ -3417,10 +3419,10 @@ int id invisible 0x7f080108
 int id inward 0x7f080109
 int id italic 0x7f08010a
 int id item_touch_helper_previous_elevation 0x7f08010b
+int id ivDrawerProfileImage 0x7f08025f
 int id ivIllustration 0x7f08010c
 int id ivLogo 0x7f08010d
 int id ivLogoWithName 0x7f08010e
-int id ivProfileImage 0x7f08010f
 int id ivProfilePhoto 0x7f080110
 int id ivSubjectImage 0x7f080111
 int id ivToggleConfirmPassword 0x7f080112
@@ -3696,6 +3698,8 @@ int id tvCreateAccount 0x7f08021d
 int id tvCreateAccountTitle 0x7f08021e
 int id tvDescription 0x7f08021f
 int id tvDifficulty 0x7f080220
+int id tvDrawerUserEmail 0x7f080260
+int id tvDrawerUserName 0x7f080261
 int id tvEstimatedHours 0x7f080221
 int id tvFollowers 0x7f080222
 int id tvForgotPassword 0x7f080223

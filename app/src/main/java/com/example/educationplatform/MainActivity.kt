@@ -18,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var btnMenu: ImageView
-    private lateinit var btnProfile: ImageView
+    private lateinit var btnProfilePhoto: CircleImageView
     private lateinit var etSearch: EditText
     private lateinit var rvPopular: RecyclerView
     private lateinit var rvCategories: RecyclerView
@@ -45,9 +47,10 @@ class MainActivity : AppCompatActivity() {
     
     // Drawer elements
     private lateinit var btnCloseDrawer: ImageView
-    private lateinit var tvUserName: TextView
-    private lateinit var tvUserEmail: TextView
-    private lateinit var btnEditProfile: TextView
+    private lateinit var ivDrawerProfileImage: CircleImageView
+    private lateinit var tvDrawerUserName: TextView
+    private lateinit var tvDrawerUserEmail: TextView
+    private lateinit var btnDrawerEditProfile: TextView
     private lateinit var btnDrawerLogout: Button
     
     // Menu items
@@ -89,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         setupCreateOverlay()
         setupRecyclerViews()
         setupSearch()
+        setupProfileButton()
         loadUserData()
         loadData()
     }
@@ -127,7 +131,7 @@ class MainActivity : AppCompatActivity() {
         // Main views
         drawerLayout = findViewById(R.id.drawerLayout)
         btnMenu = findViewById(R.id.btnMenu)
-        btnProfile = findViewById(R.id.btnProfile)
+        btnProfilePhoto = findViewById(R.id.btnProfilePhoto)
         etSearch = findViewById(R.id.etSearch)
         rvPopular = findViewById(R.id.rvPopular)
         rvCategories = findViewById(R.id.rvCategories)
@@ -138,16 +142,17 @@ class MainActivity : AppCompatActivity() {
         btnCreate = findViewById(R.id.btnCreate)
         btnMyStudies = findViewById(R.id.btnMyStudies)
         
-        // Create Overlay (removed close button and image/file options)
+        // Create Overlay
         createOverlay = findViewById(R.id.createOverlay)
         btnCreateStudy = findViewById(R.id.btnCreateStudy)
         btnCreateSession = findViewById(R.id.btnCreateSession)
         
         // Drawer views
         btnCloseDrawer = findViewById(R.id.btnCloseDrawer)
-        tvUserName = findViewById(R.id.tvUserName)
-        tvUserEmail = findViewById(R.id.tvUserEmail)
-        btnEditProfile = findViewById(R.id.btnEditProfile)
+        ivDrawerProfileImage = findViewById(R.id.ivDrawerProfileImage)
+        tvDrawerUserName = findViewById(R.id.tvDrawerUserName)
+        tvDrawerUserEmail = findViewById(R.id.tvDrawerUserEmail)
+        btnDrawerEditProfile = findViewById(R.id.btnDrawerEditProfile)
         btnDrawerLogout = findViewById(R.id.btnDrawerLogout)
         
         // Menu items
@@ -159,9 +164,16 @@ class MainActivity : AppCompatActivity() {
         menuPrivacyPolicy = findViewById(R.id.menuPrivacyPolicy)
     }
     
+    private fun setupProfileButton() {
+        btnProfilePhoto.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    
     private fun setupBottomNavigation() {
         btnHomepage.setOnClickListener {
-            showToast("Homepage clicked")
+            showToast("Already on Homepage")
         }
         
         btnCreate.setOnClickListener {
@@ -265,27 +277,91 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
         
-        btnEditProfile.setOnClickListener {
+        btnDrawerEditProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             drawerLayout.closeDrawer(GravityCompat.START)
         }
         
-        // Apenas o logout do drawer
+        // Logout do drawer
         btnDrawerLogout.setOnClickListener { logout() }
-        
-        btnProfile.setOnClickListener { 
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }
     }
     
     private fun loadUserData() {
+        Log.d("MainActivity", "Loading user data from database")
+        
+        lifecycleScope.launch {
+            try {
+                val result = SupabaseClient.getUserProfile()
+                
+                result.onSuccess { data ->
+                    Log.d("MainActivity", "User profile loaded successfully")
+                    parseUserProfile(data)
+                }.onFailure { error ->
+                    Log.e("MainActivity", "Failed to load user profile: ${error.message}")
+                    loadDefaultUserData()
+                }
+                
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Exception loading user profile", e)
+                loadDefaultUserData()
+            }
+        }
+    }
+    
+    private fun parseUserProfile(jsonData: String) {
+        try {
+            val jsonObject = JSONObject(jsonData)
+            
+            val name = jsonObject.optString("name", sessionManager.getUserName() ?: "")
+            val email = jsonObject.optString("email", sessionManager.getUserEmail() ?: "")
+            val profileImageUrl = jsonObject.optString("profile_image_url", null)
+            
+            // Update drawer views
+            tvDrawerUserName.text = if (name.isNotEmpty()) name else (sessionManager.getUserName() ?: "User")
+            tvDrawerUserEmail.text = if (email.isNotEmpty()) email else (sessionManager.getUserEmail() ?: "")
+            
+            // Load profile images (both header and drawer)
+            if (!profileImageUrl.isNullOrEmpty() && profileImageUrl != "null") {
+                loadHeaderProfileImage(profileImageUrl)
+                loadDrawerProfileImage(profileImageUrl)
+            } else {
+                btnProfilePhoto.setImageResource(R.drawable.ic_person)
+                ivDrawerProfileImage.setImageResource(R.drawable.ic_person)
+            }
+            
+            Log.d("MainActivity", "User profile parsed successfully")
+            
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error parsing user profile data", e)
+            loadDefaultUserData()
+        }
+    }
+    
+    private fun loadDefaultUserData() {
         val userName = sessionManager.getUserName() ?: "User"
         val userEmail = sessionManager.getUserEmail() ?: "user@example.com"
         
-        tvUserName.text = userName
-        tvUserEmail.text = userEmail
+        tvDrawerUserName.text = userName
+        tvDrawerUserEmail.text = userEmail
+        btnProfilePhoto.setImageResource(R.drawable.ic_person)
+        ivDrawerProfileImage.setImageResource(R.drawable.ic_person)
+    }
+    
+    private fun loadHeaderProfileImage(imageUrl: String) {
+        Glide.with(this)
+            .load(imageUrl)
+            .placeholder(R.drawable.ic_person)
+            .error(R.drawable.ic_person)
+            .into(btnProfilePhoto)
+    }
+    
+    private fun loadDrawerProfileImage(imageUrl: String) {
+        Glide.with(this)
+            .load(imageUrl)
+            .placeholder(R.drawable.ic_person)
+            .error(R.drawable.ic_person)
+            .into(ivDrawerProfileImage)
     }
     
     private fun setupRecyclerViews() {
@@ -492,6 +568,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
         showToast("Logged out successfully")
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        // Refresh user data when returning to MainActivity
+        loadUserData()
     }
     
     override fun onBackPressed() {
