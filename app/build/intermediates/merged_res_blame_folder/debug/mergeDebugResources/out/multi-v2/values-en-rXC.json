@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.veducation.app-mergeDebugResources-29:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.veducation.app-mergeDebugResources-30:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "C:\\Users\\vasco\\.gradle\\caches\\8.10.2\\transforms\\7f76b6ee10c363ab237345ec85acc133\\transformed\\core-1.12.0\\res\\values-en-rXC\\values-en-rXC.xml",

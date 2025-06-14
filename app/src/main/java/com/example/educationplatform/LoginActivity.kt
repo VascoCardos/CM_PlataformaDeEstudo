@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -18,11 +19,14 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var ivTogglePassword: ImageView
     private lateinit var btnLogin: Button
+    private lateinit var sessionManager: SessionManager
     private var isPasswordVisible = false
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        
+        sessionManager = SessionManager(this)
         
         // Initialize views
         etUsername = findViewById(R.id.etUsername)
@@ -69,8 +73,16 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val result = SupabaseClient.signIn(email, password)
             
-            result.onSuccess { message ->
-                showToast(message)
+            result.onSuccess { signInResponse ->
+                // Save login session
+                sessionManager.createLoginSession(
+                    signInResponse.email,
+                    signInResponse.name,
+                    signInResponse.accessToken
+                )
+                
+                showToast("Login successful!")
+                
                 // Navigate to MainActivity after successful login
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -98,6 +110,6 @@ class LoginActivity : AppCompatActivity() {
     }
     
     private fun showToast(message: String) {
-        android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

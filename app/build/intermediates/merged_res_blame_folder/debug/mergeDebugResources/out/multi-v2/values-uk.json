@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.veducation.app-mergeDebugResources-29:/values-uk/values-uk.xml",
+            "outputFile": "com.veducation.app-mergeDebugResources-30:/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\vasco\\.gradle\\caches\\8.10.2\\transforms\\34cd3c3b84fd96b998a200c912a870b6\\transformed\\appcompat-1.6.1\\res\\values-uk\\values-uk.xml",
