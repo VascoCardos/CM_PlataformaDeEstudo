@@ -1,0 +1,78 @@
+[
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_v_education_logo_with_name.png.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\v_education_logo_with_name.png"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_students_illustration.png.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\students_illustration.png"
+    },
+    {
+        "merged": "com.veducation.app-debug-31:/layout_activity_main.xml.flat",
+        "source": "com.veducation.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_gradient_button_2.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\gradient_button_2.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_background_circles.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\background_circles.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_background3.png.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\background3.png"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\layout_activity_first_page.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\layout\\activity_first_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_gradient_button.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\gradient_button.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_edit_text_background.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\edit_text_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\layout_activity_pre_start.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\layout\\activity_pre_start.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_ic_eye.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\ic_eye.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_v_education_logo.png.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\v_education_logo.png"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_corner_background.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\corner_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_background1.png.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\background1.png"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_background2.png.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\background2.png"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\layout_activity_start.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\layout\\activity_start.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\drawable_v_logo.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\drawable\\v_logo.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-31:\\layout_activity_create_account.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-33:\\layout\\activity_create_account.xml"
+    }
+]
