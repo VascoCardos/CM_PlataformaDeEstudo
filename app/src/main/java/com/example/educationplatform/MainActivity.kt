@@ -1,15 +1,20 @@
 package com.veducation.app
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +24,7 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var btnMenu: ImageView
     private lateinit var btnProfile: ImageView
     private lateinit var etSearch: EditText
@@ -28,6 +34,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLogout: Button
     private lateinit var sessionManager: SessionManager
 
+    // Drawer elements
+    private lateinit var btnCloseDrawer: ImageView
+    private lateinit var tvUserName: TextView
+    private lateinit var tvUserEmail: TextView
+    private lateinit var btnEditProfile: TextView
+    private lateinit var btnDrawerLogout: Button
+
+    // Menu items
+    private lateinit var menuMyProfile: LinearLayout
+    private lateinit var menuSettings: LinearLayout
+    private lateinit var menuStatistics: LinearLayout
+    private lateinit var menuHelp: LinearLayout
+    private lateinit var menuActivityHistory: LinearLayout
+    private lateinit var menuPrivacyPolicy: LinearLayout
+
     private lateinit var popularAdapter: PopularSubjectsAdapter
     private lateinit var categoriesAdapter: CategoriesAdapter
     private val popularSubjects = mutableListOf<Subject>()
@@ -35,6 +56,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Force portrait orientation
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         setContentView(R.layout.activity_main)
 
         sessionManager = SessionManager(this)
@@ -46,18 +71,38 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Restore access token
-        val accessToken = sessionManager.getAccessToken()
-        if (accessToken != null) {
-            Log.d("MainActivity", "Restoring access token")
-            SupabaseClient.setAccessToken(accessToken)
-        } else {
-            Log.w("MainActivity", "No access token found")
-        }
+        // Restore tokens manually
+        restoreTokens()
 
         initViews()
+        setupDrawer()
         setupRecyclerViews()
+        setupSearch()
+        loadUserData()
         loadData()
+    }
+
+    private fun restoreTokens() {
+        val accessToken = sessionManager.getAccessToken()
+        val refreshToken = sessionManager.getRefreshToken()
+        val expiresAt = sessionManager.getTokenExpiresAt()
+
+        if (accessToken != null && refreshToken != null && expiresAt > 0) {
+            val expiresIn = ((expiresAt - System.currentTimeMillis()) / 1000).toInt()
+            if (expiresIn > 0) {
+                SupabaseClient.setTokens(accessToken, refreshToken, expiresIn)
+                Log.d("MainActivity", "✅ Tokens restored successfully")
+            } else {
+                Log.w("MainActivity", "⚠️ Stored tokens are expired")
+                // Tokens are expired, redirect to login
+                redirectToLogin()
+                return
+            }
+        } else {
+            Log.w("MainActivity", "⚠️ No valid tokens found")
+            redirectToLogin()
+            return
+        }
     }
 
     private fun redirectToLogin() {
@@ -68,6 +113,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        // Main views
+        drawerLayout = findViewById(R.id.drawerLayout)
         btnMenu = findViewById(R.id.btnMenu)
         btnProfile = findViewById(R.id.btnProfile)
         etSearch = findViewById(R.id.etSearch)
@@ -76,14 +123,96 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         btnLogout = findViewById(R.id.btnLogout)
 
+        // Drawer views
+        btnCloseDrawer = findViewById(R.id.btnCloseDrawer)
+        tvUserName = findViewById(R.id.tvUserName)
+        tvUserEmail = findViewById(R.id.tvUserEmail)
+        btnEditProfile = findViewById(R.id.btnEditProfile)
+        btnDrawerLogout = findViewById(R.id.btnDrawerLogout)
+
+        // Menu items
+        menuMyProfile = findViewById(R.id.menuMyProfile)
+        menuSettings = findViewById(R.id.menuSettings)
+        menuStatistics = findViewById(R.id.menuStatistics)
+        menuHelp = findViewById(R.id.menuHelp)
+        menuActivityHistory = findViewById(R.id.menuActivityHistory)
+        menuPrivacyPolicy = findViewById(R.id.menuPrivacyPolicy)
+    }
+
+    private fun setupSearch() {
+        etSearch.setOnClickListener {
+            // Navigate to search activity
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
+        etSearch.isFocusable = false
+        etSearch.isClickable = true
+    }
+
+    private fun setupDrawer() {
+        // Open drawer
+        btnMenu.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        // Close drawer
+        btnCloseDrawer.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        // Menu item clicks
+        menuMyProfile.setOnClickListener {
+            showToast("My Profile clicked")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        menuSettings.setOnClickListener {
+            showToast("Settings clicked")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        menuStatistics.setOnClickListener {
+            showToast("Statistics clicked")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        menuHelp.setOnClickListener {
+            showToast("Help clicked")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        menuActivityHistory.setOnClickListener {
+            showToast("Activity History clicked")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        menuPrivacyPolicy.setOnClickListener {
+            showToast("Privacy Policy clicked")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        btnEditProfile.setOnClickListener {
+            showToast("Edit Profile clicked")
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        // Logout buttons
         btnLogout.setOnClickListener { logout() }
+        btnDrawerLogout.setOnClickListener { logout() }
+
         btnProfile.setOnClickListener {
             val userName = sessionManager.getUserName() ?: "User"
             showToast("Hello, $userName!")
         }
-        btnMenu.setOnClickListener {
-            showToast("Menu clicked - to be implemented")
-        }
+    }
+
+    private fun loadUserData() {
+        val userName = sessionManager.getUserName() ?: "User"
+        val userEmail = sessionManager.getUserEmail() ?: "user@example.com"
+
+        tvUserName.text = userName
+        tvUserEmail.text = userEmail
     }
 
     private fun setupRecyclerViews() {
@@ -107,99 +236,115 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
-        Log.d("MainActivity", "Loading data from database...")
+        Log.d("MainActivity", "=== STARTING DATA LOAD ===")
+        Log.d("MainActivity", "Access token available: ${SupabaseClient.getAccessToken() != null}")
+        Log.d("MainActivity", "User logged in: ${sessionManager.isLoggedIn()}")
+
         progressBar.visibility = View.VISIBLE
 
         lifecycleScope.launch {
             try {
+                Log.d("MainActivity", "Making request to Supabase...")
                 val result = SupabaseClient.getSubjectsWithCategories()
+
                 result.onSuccess { data ->
-                    Log.d("MainActivity", "Data loaded successfully: ${data.length} characters")
-                    parseAndDisplayData(data)
-                    progressBar.visibility = View.GONE
-                }.onFailure { error ->
-                    Log.e("MainActivity", "Error loading data: ${error.message}")
-                    showToast("Error loading data: ${error.message}")
+                    Log.d("MainActivity", "✅ SUCCESS: Data loaded successfully")
+                    Log.d("MainActivity", "Response length: ${data.length} characters")
+                    Log.d("MainActivity", "First 200 chars: ${data.take(200)}")
+
+                    if (data.trim().isEmpty()) {
+                        Log.w("MainActivity", "⚠️ WARNING: Response is empty")
+                        showEmptyState()
+                    } else {
+                        parseAndDisplayData(data)
+                    }
                     progressBar.visibility = View.GONE
 
-                    // Show some test data if database fails
-                    showTestData()
+                }.onFailure { error ->
+                    Log.e("MainActivity", "❌ ERROR: Failed to load data")
+                    Log.e("MainActivity", "Error message: ${error.message}")
+                    Log.e("MainActivity", "Error type: ${error.javaClass.simpleName}")
+
+                    showToast("Erro ao carregar dados: ${error.message}")
+                    progressBar.visibility = View.GONE
+                    showEmptyState()
                 }
+
             } catch (e: Exception) {
-                Log.e("MainActivity", "Exception loading data", e)
-                showToast("Error: ${e.message}")
+                Log.e("MainActivity", "❌ EXCEPTION: Unexpected error occurred")
+                Log.e("MainActivity", "Exception message: ${e.message}")
+                Log.e("MainActivity", "Exception type: ${e.javaClass.simpleName}")
+                e.printStackTrace()
+
+                showToast("Erro inesperado: ${e.message}")
                 progressBar.visibility = View.GONE
-                showTestData()
+                showEmptyState()
             }
         }
     }
 
-    private fun showTestData() {
-        Log.d("MainActivity", "Showing test data")
-        // Add some test subjects if database fails
+    private fun showEmptyState() {
+        Log.d("MainActivity", "Showing empty state - no data to display")
         popularSubjects.clear()
         categoriesList.clear()
-
-        val testSubjects = listOf(
-            Subject("1", "JavaScript", "Learn JavaScript programming", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", 150, false, true, 2, 40, "Programming", "#FF6B35"),
-            Subject("2", "Python", "Learn Python programming", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", 200, false, true, 2, 35, "Programming", "#FF6B35"),
-            Subject("3", "Mathematics", "Basic mathematics", "https://img.icons8.com/color/96/000000/math.png", 100, false, false, 3, 50, "Math", "#4ECDC4")
-        )
-
-        popularSubjects.addAll(testSubjects)
-
-        val programmingCategory = Category("Programming", "#FF6B35", mutableListOf(testSubjects[0], testSubjects[1]))
-        val mathCategory = Category("Math", "#4ECDC4", mutableListOf(testSubjects[2]))
-
-        categoriesList.add(programmingCategory)
-        categoriesList.add(mathCategory)
-
         popularAdapter.notifyDataSetChanged()
         categoriesAdapter.notifyDataSetChanged()
     }
 
     private fun parseAndDisplayData(jsonData: String) {
         try {
-            Log.d("MainActivity", "Parsing JSON data...")
+            Log.d("MainActivity", "=== PARSING JSON DATA ===")
             val jsonArray = JSONArray(jsonData)
-            Log.d("MainActivity", "Found ${jsonArray.length()} subjects")
+            Log.d("MainActivity", "Found ${jsonArray.length()} subjects in response")
+
+            if (jsonArray.length() == 0) {
+                Log.w("MainActivity", "⚠️ JSON array is empty")
+                showEmptyState()
+                return
+            }
 
             val categoryMap = mutableMapOf<String, Category>()
             val allSubjects = mutableListOf<Subject>()
 
             for (i in 0 until jsonArray.length()) {
                 val item = jsonArray.getJSONObject(i)
-                val categoryName = item.getString("category_name")
-                val categoryColor = item.getString("category_color")
 
-                // Log each subject data
-                Log.d("MainActivity", "Subject ${i}: ${item.getString("name")}")
-                Log.d("MainActivity", "Image URL: ${if (item.isNull("image_url")) "null" else item.getString("image_url")}")
+                try {
+                    val categoryName = item.getString("category_name")
+                    val categoryColor = item.getString("category_color")
 
-                if (!categoryMap.containsKey(categoryName)) {
-                    categoryMap[categoryName] = Category(
-                        name = categoryName,
-                        color = categoryColor,
-                        subjects = mutableListOf()
+                    Log.d("MainActivity", "Processing subject ${i + 1}: ${item.getString("name")}")
+
+                    if (!categoryMap.containsKey(categoryName)) {
+                        categoryMap[categoryName] = Category(
+                            name = categoryName,
+                            color = categoryColor,
+                            subjects = mutableListOf()
+                        )
+                        Log.d("MainActivity", "Created new category: $categoryName")
+                    }
+
+                    val subject = Subject(
+                        id = item.getString("id"),
+                        name = item.getString("name"),
+                        description = item.getString("description"),
+                        imageUrl = if (item.isNull("image_url")) null else item.getString("image_url"),
+                        followersCount = item.getInt("followers_count"),
+                        isFollowed = item.getBoolean("is_followed_by_current_user"),
+                        isFeatured = item.getBoolean("is_featured"),
+                        difficultyLevel = item.getInt("difficulty_level"),
+                        estimatedHours = if (item.isNull("estimated_hours")) 0 else item.getInt("estimated_hours"),
+                        categoryName = categoryName,
+                        categoryColor = categoryColor
                     )
+
+                    categoryMap[categoryName]?.subjects?.add(subject)
+                    allSubjects.add(subject)
+
+                } catch (e: Exception) {
+                    Log.e("MainActivity", "Error parsing subject $i: ${e.message}")
+                    continue
                 }
-
-                val subject = Subject(
-                    id = item.getString("id"),
-                    name = item.getString("name"),
-                    description = item.getString("description"),
-                    imageUrl = if (item.isNull("image_url")) null else item.getString("image_url"),
-                    followersCount = item.getInt("followers_count"),
-                    isFollowed = item.getBoolean("is_followed_by_current_user"),
-                    isFeatured = item.getBoolean("is_featured"),
-                    difficultyLevel = item.getInt("difficulty_level"),
-                    estimatedHours = if (item.isNull("estimated_hours")) 0 else item.getInt("estimated_hours"),
-                    categoryName = categoryName,
-                    categoryColor = categoryColor
-                )
-
-                categoryMap[categoryName]?.subjects?.add(subject)
-                allSubjects.add(subject)
             }
 
             // Sort subjects by followers count for popular section
@@ -209,16 +354,20 @@ class MainActivity : AppCompatActivity() {
             categoriesList.clear()
             categoriesList.addAll(categoryMap.values)
 
-            Log.d("MainActivity", "Parsed ${allSubjects.size} subjects into ${categoriesList.size} categories")
+            Log.d("MainActivity", "✅ PARSING COMPLETE")
+            Log.d("MainActivity", "Total subjects: ${allSubjects.size}")
+            Log.d("MainActivity", "Categories: ${categoriesList.size}")
             Log.d("MainActivity", "Popular subjects: ${popularSubjects.size}")
 
             popularAdapter.notifyDataSetChanged()
             categoriesAdapter.notifyDataSetChanged()
 
         } catch (e: Exception) {
-            Log.e("MainActivity", "Error parsing data", e)
-            showToast("Error parsing data: ${e.message}")
-            showTestData()
+            Log.e("MainActivity", "❌ ERROR PARSING DATA")
+            Log.e("MainActivity", "Parse error: ${e.message}")
+            e.printStackTrace()
+            showToast("Erro ao processar dados: ${e.message}")
+            showEmptyState()
         }
     }
 
@@ -232,9 +381,13 @@ class MainActivity : AppCompatActivity() {
     private fun toggleFollowSubject(subject: Subject) {
         lifecycleScope.launch {
             try {
+                Log.d("MainActivity", "Toggling follow for subject: ${subject.name}")
                 val result = SupabaseClient.toggleSubjectFollow(subject.id)
+
                 result.onSuccess { response ->
+                    Log.d("MainActivity", "Toggle follow response: $response")
                     val jsonResponse = JSONObject(response)
+
                     if (jsonResponse.getBoolean("success")) {
                         subject.isFollowed = jsonResponse.getBoolean("is_following")
                         subject.followersCount = jsonResponse.getInt("followers_count")
@@ -246,10 +399,12 @@ class MainActivity : AppCompatActivity() {
                         showToast("${subject.name} $action!")
                     }
                 }.onFailure { error ->
-                    showToast("Error: ${error.message}")
+                    Log.e("MainActivity", "Error toggling follow: ${error.message}")
+                    showToast("Erro: ${error.message}")
                 }
             } catch (e: Exception) {
-                showToast("Error: ${e.message}")
+                Log.e("MainActivity", "Exception toggling follow: ${e.message}")
+                showToast("Erro: ${e.message}")
             }
         }
     }
@@ -264,6 +419,14 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
         showToast("Logged out successfully")
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     private fun showToast(message: String) {

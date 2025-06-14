@@ -34,10 +34,10 @@ class PopularSubjectsAdapter(
 
     override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
         val subject = subjects[position]
-
+        
         holder.tvSubjectName.text = subject.name
         holder.tvFollowers.text = "${subject.followersCount} followers"
-
+        
         // Load image with Glide
         if (!subject.imageUrl.isNullOrEmpty()) {
             Log.d("PopularAdapter", "Loading image: ${subject.imageUrl}")
@@ -51,14 +51,14 @@ class PopularSubjectsAdapter(
             Log.d("PopularAdapter", "No image URL for ${subject.name}, using default")
             holder.ivSubjectImage.setImageResource(R.drawable.ic_subject_default)
         }
-
+        
         // Set card background color based on category
         try {
             holder.cardView.setCardBackgroundColor(Color.parseColor(subject.categoryColor))
         } catch (e: Exception) {
             holder.cardView.setCardBackgroundColor(Color.WHITE)
         }
-
+        
         // Set follow button state
         if (subject.isFollowed) {
             holder.btnFollow.setImageResource(R.drawable.ic_check)
@@ -67,12 +67,12 @@ class PopularSubjectsAdapter(
             holder.btnFollow.setImageResource(R.drawable.ic_add)
             holder.btnFollow.setColorFilter(Color.parseColor("#FA7E01"))
         }
-
+        
         // Handle follow button click
         holder.btnFollow.setOnClickListener {
             onFollowClick(subject)
         }
-
+        
         // Handle card click
         holder.cardView.setOnClickListener {
             onSubjectClick(subject)

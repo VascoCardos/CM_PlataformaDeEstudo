@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-46:12
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-46:12
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-62:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\f96f0d91e83afee0117ab2ff2be3b4ca\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7475ea3538e07f70091124452b5506f2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\09ea464a679a1471cb2f19d0b0fa51be\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -63,8 +63,8 @@ ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:5:
 	android:name
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:7:5-44:19
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:7:5-44:19
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:7:5-60:19
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:7:5-60:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\f96f0d91e83afee0117ab2ff2be3b4ca\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\f96f0d91e83afee0117ab2ff2be3b4ca\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7475ea3538e07f70091124452b5506f2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -98,51 +98,79 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\va
 	android:theme
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:13:9-55
 activity#com.veducation.app.PreStartActivity
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:15:9-22:20
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:15:9-23:20
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:18:13-49
 	android:exported
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:17:13-36
 	android:name
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:16:13-45
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:18:13-21:29
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:19:13-22:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:19:17-69
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:19:25-66
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:20:17-77
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:20:27-74
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:21:27-74
 activity#com.veducation.app.StartActivity
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:24:9-26:40
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:25:9-28:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:28:13-49
 	android:exported
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:26:13-37
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:25:13-42
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:26:13-42
 activity#com.veducation.app.FirstPageActivity
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:28:9-30:40
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:30:9-33:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:13-49
 	android:exported
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:30:13-37
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:32:13-37
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:29:13-46
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:31:13-46
 activity#com.veducation.app.LoginActivity
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:32:9-34:40
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:35:9-38:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:38:13-49
 	android:exported
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:34:13-37
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:37:13-37
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:13-42
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:36:13-42
 activity#com.veducation.app.CreateAccountActivity
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:36:9-38:40
-	android:exported
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:38:13-37
-	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:37:13-50
-activity#com.veducation.app.MainActivity
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:40:9-42:40
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:40:9-43:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:43:13-49
 	android:exported
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:42:13-37
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:41:13-41
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:41:13-50
+activity#com.veducation.app.MainActivity
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:45:9-48:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:48:13-49
+	android:exported
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:46:13-41
+activity#com.veducation.app.SearchActivity
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:50:9-53:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:53:13-49
+	android:exported
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:52:13-37
+	android:name
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:51:13-43
+activity#com.veducation.app.SearchResultsActivity
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:55:9-58:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:58:13-49
+	android:exported
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:57:13-37
+	android:name
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:56:13-50
 uses-sdk
 INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml

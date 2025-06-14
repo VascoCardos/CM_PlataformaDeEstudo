@@ -21,23 +21,23 @@ class SubjectDetailsDialog(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        
         // Remove default dialog styling
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.dialog_subject_details)
-
+        
         // Make dialog responsive to content
         window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-
+        
         // Set dialog background to transparent so our custom background shows
         window?.setBackgroundDrawableResource(android.R.color.transparent)
-
+        
         setupDialog()
     }
-
+    
     private fun setupDialog() {
         val ivSubjectImage = findViewById<ImageView>(R.id.ivSubjectImage)
         val tvSubjectName = findViewById<TextView>(R.id.tvSubjectName)
@@ -48,7 +48,7 @@ class SubjectDetailsDialog(
         val tvEstimatedHours = findViewById<TextView>(R.id.tvEstimatedHours)
         val btnFollow = findViewById<Button>(R.id.btnFollow)
         val btnClose = findViewById<Button>(R.id.btnClose)
-
+        
         // Set subject data
         tvSubjectName.text = subject.name
         tvDescription.text = subject.description
@@ -56,7 +56,7 @@ class SubjectDetailsDialog(
         tvFollowers.text = "${subject.followersCount} followers"
         tvDifficulty.text = "Difficulty: ${getDifficultyText(subject.difficultyLevel)}"
         tvEstimatedHours.text = "Estimated: ${subject.estimatedHours}h"
-
+        
         // Load image with Glide
         if (!subject.imageUrl.isNullOrEmpty()) {
             Log.d("SubjectDialog", "Loading image: ${subject.imageUrl}")
@@ -70,21 +70,21 @@ class SubjectDetailsDialog(
             Log.d("SubjectDialog", "No image URL for ${subject.name}, using default")
             ivSubjectImage.setImageResource(R.drawable.ic_subject_default)
         }
-
+        
         // Set follow button
         updateFollowButton(btnFollow)
-
+        
         // Handle clicks
         btnFollow.setOnClickListener {
             onFollowClick(subject)
             updateFollowButton(btnFollow)
         }
-
+        
         btnClose.setOnClickListener {
             dismiss()
         }
     }
-
+    
     private fun updateFollowButton(btnFollow: Button) {
         if (subject.isFollowed) {
             btnFollow.text = "Unfollow"
@@ -94,7 +94,7 @@ class SubjectDetailsDialog(
             btnFollow.setBackgroundResource(R.drawable.gradient_button)
         }
     }
-
+    
     private fun getDifficultyText(level: Int): String {
         return when (level) {
             1 -> "Beginner"

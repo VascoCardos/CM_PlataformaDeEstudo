@@ -1,6 +1,7 @@
 package com.veducation.app
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -27,6 +28,10 @@ class CreateAccountActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Force portrait orientation
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        
         setContentView(R.layout.activity_create_account)
         
         // Initialize views

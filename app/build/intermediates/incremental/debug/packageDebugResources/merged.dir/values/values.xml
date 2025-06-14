@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="orange_end">#FBC217</color>
+    <color name="orange_end_2">#FF774C</color>
+    <color name="orange_start">#FA7E01</color>
+    <color name="orange_start_2">#F9881F</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">V</string>
+    <style name="Theme.EducationPlatform" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/orange_start</item>
+        <item name="colorPrimaryVariant">@color/orange_end</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+</resources>

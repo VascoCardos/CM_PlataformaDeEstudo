@@ -34,10 +34,10 @@ class SubjectsAdapter(
 
     override fun onBindViewHolder(holder: SubjectViewHolder, position: Int) {
         val subject = subjects[position]
-
+        
         holder.tvSubjectName.text = subject.name
         holder.tvFollowers.text = "${subject.followersCount} followers"
-
+        
         // Load image with Glide
         if (!subject.imageUrl.isNullOrEmpty()) {
             Log.d("SubjectsAdapter", "Loading image: ${subject.imageUrl}")
@@ -51,10 +51,10 @@ class SubjectsAdapter(
             Log.d("SubjectsAdapter", "No image URL for ${subject.name}, using default")
             holder.ivSubjectImage.setImageResource(R.drawable.ic_subject_default)
         }
-
+        
         // Set card background color
         holder.cardView.setCardBackgroundColor(Color.WHITE)
-
+        
         // Set follow button state
         if (subject.isFollowed) {
             holder.btnFollow.setImageResource(R.drawable.ic_check)
@@ -63,12 +63,12 @@ class SubjectsAdapter(
             holder.btnFollow.setImageResource(R.drawable.ic_add)
             holder.btnFollow.setColorFilter(Color.parseColor("#FA7E01"))
         }
-
+        
         // Handle follow button click
         holder.btnFollow.setOnClickListener {
             onFollowClick(subject)
         }
-
+        
         // Handle card click
         holder.cardView.setOnClickListener {
             onSubjectClick(subject)

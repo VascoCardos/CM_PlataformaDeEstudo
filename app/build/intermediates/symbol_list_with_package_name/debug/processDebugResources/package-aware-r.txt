@@ -3003,6 +3003,7 @@ drawable gradient_button
 drawable gradient_button_2
 drawable gradient_header
 drawable ic_add
+drawable ic_arrow_back
 drawable ic_arrow_back_black_24
 drawable ic_bookmark
 drawable ic_call_answer
@@ -3014,8 +3015,11 @@ drawable ic_call_decline_low
 drawable ic_check
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
+drawable ic_close
 drawable ic_eye
 drawable ic_finance
+drawable ic_help
+drawable ic_history
 drawable ic_home
 drawable ic_keyboard_black_24dp
 drawable ic_m3_chip_check
@@ -3027,8 +3031,11 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_person
+drawable ic_privacy
 drawable ic_search
 drawable ic_search_black_24
+drawable ic_settings
+drawable ic_statistics
 drawable ic_subject_default
 drawable logout_button
 drawable m3_avd_hide_password
@@ -3103,7 +3110,9 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable profile_circle_background
 drawable search_background
+drawable search_history_background
 drawable stats_background
 drawable students_illustration
 drawable test_level_drawable
@@ -3211,14 +3220,19 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnBack
 id btnClose
+id btnCloseDrawer
 id btnContinueWithoutAccount
 id btnCreateAccount
+id btnDrawerLogout
+id btnEditProfile
 id btnFollow
 id btnLogin
 id btnLogout
 id btnMenu
 id btnProfile
+id btnRemove
 id btnSignUp
 id buttonPanel
 id cache_measures
@@ -3289,6 +3303,7 @@ id dragLeft
 id dragRight
 id dragStart
 id dragUp
+id drawerLayout
 id dropdown_menu
 id easeIn
 id easeInOut
@@ -3342,6 +3357,7 @@ id headerLayout
 id header_title
 id hide_ime_id
 id hideable
+id historySection
 id home
 id homeAsUp
 id honorRequest
@@ -3363,6 +3379,7 @@ id item_touch_helper_previous_elevation
 id ivIllustration
 id ivLogo
 id ivLogoWithName
+id ivProfileImage
 id ivSubjectImage
 id ivToggleConfirmPassword
 id ivTogglePassword
@@ -3404,6 +3421,12 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id menuActivityHistory
+id menuHelp
+id menuMyProfile
+id menuPrivacyPolicy
+id menuSettings
+id menuStatistics
 id message
 id middle
 id mini
@@ -3438,6 +3461,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id navigationDrawer
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3448,6 +3472,7 @@ id navigation_header_container
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
+id noResultsLayout
 id noScroll
 id noState
 id none
@@ -3509,6 +3534,8 @@ id rounded
 id row_index_key
 id rvCategories
 id rvPopular
+id rvSearchHistory
+id rvSearchResults
 id rvSubjects
 id save_non_transition_alpha
 id save_overlay_view
@@ -3629,7 +3656,13 @@ id tvFollowers
 id tvForgotPassword
 id tvLogin
 id tvLoginTitle
+id tvNoHistory
+id tvResultsCount
+id tvSearchQuery
+id tvSearchTerm
 id tvSubjectName
+id tvUserEmail
+id tvUserName
 id tvViewAll
 id unchecked
 id uniform
@@ -3773,6 +3806,8 @@ layout activity_first_page
 layout activity_login
 layout activity_main
 layout activity_pre_start
+layout activity_search
+layout activity_search_results
 layout activity_start
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3795,8 +3830,8 @@ layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_category
 layout item_popular_subject
+layout item_search_history
 layout item_subject
-layout layout
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
