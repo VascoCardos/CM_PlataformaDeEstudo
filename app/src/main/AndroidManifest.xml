@@ -8,16 +8,23 @@
     <!-- Permissões para câmera -->
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- Permissões para galeria (Android 13+) -->
+    <!-- Permissões para galeria e arquivos (Android 13+) -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
-    <!-- Permissões para galeria (Android 12 e anteriores) -->
+    <!-- Permissões para galeria e arquivos (Android 12 e anteriores) -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
-    <!-- Permissão para escrever (se necessário) -->
+    <!-- Permissão para escrever (Android 10 e anteriores) -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
+        android:maxSdkVersion="29"
+        tools:ignore="ScopedStorage" />
+
+    <!-- Permissão para gerenciar arquivos externos (Android 11+) -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <!-- Features opcionais -->
     <uses-feature android:name="android.hardware.camera" android:required="false" />
@@ -30,7 +37,8 @@
         android:roundIcon="@drawable/v_education_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.EducationPlatform"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true">
 
         <activity
             android:name=".PreStartActivity"
@@ -79,6 +87,11 @@
 
         <activity
             android:name=".ProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".CreateStudyActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

@@ -2,10 +2,27 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
+
     <!-- Gradient Colors -->
     <color name="orange_start">#FA7E01</color>
     <color name="orange_end">#FBC217</color>
     <color name="orange_start_2">#F9881F</color>
     <color name="orange_end_2">#FF774C</color>
+    
+    <!-- Additional colors -->
+    <color name="text_primary">#2C3E50</color>
+    <color name="text_secondary">#7F8C8D</color>
+    <color name="background_light">#F8F9FA</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="divider">#E8E8E8</color>
+    <color name="accent">#FF6B35</color>
+    <color name="primary">#4A90E2</color>
+    <color name="success">#27AE60</color>
+    <color name="warning">#F39C12</color>
+    <color name="error">#E74C3C</color>
+    
+    <!-- Gray colors -->
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#CCCCCC</color>
+    <color name="gray_dark">#666666</color>
 </resources>

@@ -1,7 +1,15 @@
 [
     {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\layout_activity_create_study.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\layout\\activity_create_study.xml"
+    },
+    {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_search_history_background.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\search_history_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\layout_item_attached_file.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\layout\\item_attached_file.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_students_illustration.png.flat",
@@ -28,28 +36,28 @@
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\layout\\activity_search.xml"
     },
     {
+        "merged": "com.veducation.app-debug-39:/drawable_ic_remove.xml.flat",
+        "source": "com.veducation.app-main-41:/drawable/ic_remove.xml"
+    },
+    {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_settings.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_settings.xml"
-    },
-    {
-        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_subject_default.xml.flat",
-        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_subject_default.xml"
-    },
-    {
-        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_name_container_background.xml.flat",
-        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\name_container_background.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\layout_item_subject.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\layout\\item_subject.xml"
     },
     {
-        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_help.xml.flat",
-        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_help.xml"
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_name_container_background.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\name_container_background.xml"
     },
     {
-        "merged": "com.veducation.app-debug-39:/layout_item_popular_subject.xml.flat",
-        "source": "com.veducation.app-main-41:/layout/item_popular_subject.xml"
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_subject_default.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_subject_default.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_help.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_help.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_camera.xml.flat",
@@ -58,10 +66,6 @@
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_followers_background.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\followers_background.xml"
-    },
-    {
-        "merged": "com.veducation.app-debug-39:/layout_activity_search_results.xml.flat",
-        "source": "com.veducation.app-main-41:/layout/activity_search_results.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_person.xml.flat",
@@ -88,6 +92,10 @@
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\background1.png"
     },
     {
+        "merged": "com.veducation.app-debug-39:/drawable_button_secondary.xml.flat",
+        "source": "com.veducation.app-main-41:/drawable/button_secondary.xml"
+    },
+    {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_search_background.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\search_background.xml"
     },
@@ -110,6 +118,10 @@
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_circle_button.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\circle_button.xml"
+    },
+    {
+        "merged": "com.veducation.app-debug-39:/layout_item_attached_file.xml.flat",
+        "source": "com.veducation.app-main-41:/layout/item_attached_file.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_add.xml.flat",
@@ -136,20 +148,8 @@
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\logout_button.xml"
     },
     {
-        "merged": "com.veducation.app-debug-39:/layout_item_subject.xml.flat",
-        "source": "com.veducation.app-main-41:/layout/item_subject.xml"
-    },
-    {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\layout_activity_start.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\layout\\activity_start.xml"
-    },
-    {
-        "merged": "com.veducation.app-debug-39:/layout_item_category.xml.flat",
-        "source": "com.veducation.app-main-41:/layout/item_category.xml"
-    },
-    {
-        "merged": "com.veducation.app-debug-39:/layout_activity_main.xml.flat",
-        "source": "com.veducation.app-main-41:/layout/activity_main.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\layout_activity_search_results.xml.flat",
@@ -178,6 +178,10 @@
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_info.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_remove.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_remove.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_eye.xml.flat",
@@ -262,6 +266,10 @@
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_search.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_search.xml"
+    },
+    {
+        "merged": "com.veducation.app-debug-39:/drawable_edit_text_background.xml.flat",
+        "source": "com.veducation.app-main-41:/drawable/edit_text_background.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_history.xml.flat",
