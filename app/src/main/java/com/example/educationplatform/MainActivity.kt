@@ -31,8 +31,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvPopular: RecyclerView
     private lateinit var rvCategories: RecyclerView
     private lateinit var progressBar: ProgressBar
-    private lateinit var btnLogout: Button
     private lateinit var sessionManager: SessionManager
+
+    // Bottom Navigation
+    private lateinit var btnHomepage: LinearLayout
+    private lateinit var btnCreate: LinearLayout
+    private lateinit var btnMyStudies: LinearLayout
+
+    // Create Overlay
+    private lateinit var createOverlay: LinearLayout
+    private lateinit var btnCreateStudy: LinearLayout
+    private lateinit var btnCreateSession: LinearLayout
 
     // Drawer elements
     private lateinit var btnCloseDrawer: ImageView
@@ -76,6 +85,8 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
         setupDrawer()
+        setupBottomNavigation()
+        setupCreateOverlay()
         setupRecyclerViews()
         setupSearch()
         loadUserData()
@@ -121,7 +132,16 @@ class MainActivity : AppCompatActivity() {
         rvPopular = findViewById(R.id.rvPopular)
         rvCategories = findViewById(R.id.rvCategories)
         progressBar = findViewById(R.id.progressBar)
-        btnLogout = findViewById(R.id.btnLogout)
+
+        // Bottom Navigation
+        btnHomepage = findViewById(R.id.btnHomepage)
+        btnCreate = findViewById(R.id.btnCreate)
+        btnMyStudies = findViewById(R.id.btnMyStudies)
+
+        // Create Overlay (removed close button and image/file options)
+        createOverlay = findViewById(R.id.createOverlay)
+        btnCreateStudy = findViewById(R.id.btnCreateStudy)
+        btnCreateSession = findViewById(R.id.btnCreateSession)
 
         // Drawer views
         btnCloseDrawer = findViewById(R.id.btnCloseDrawer)
@@ -137,6 +157,58 @@ class MainActivity : AppCompatActivity() {
         menuHelp = findViewById(R.id.menuHelp)
         menuActivityHistory = findViewById(R.id.menuActivityHistory)
         menuPrivacyPolicy = findViewById(R.id.menuPrivacyPolicy)
+    }
+
+    private fun setupBottomNavigation() {
+        btnHomepage.setOnClickListener {
+            showToast("Homepage clicked")
+        }
+
+        btnCreate.setOnClickListener {
+            showCreateOverlay()
+        }
+
+        btnMyStudies.setOnClickListener {
+            showToast("My Studies clicked")
+        }
+    }
+
+    private fun setupCreateOverlay() {
+        // Close overlay when clicking outside (on the background)
+        createOverlay.setOnClickListener {
+            hideCreateOverlay()
+        }
+
+        btnCreateStudy.setOnClickListener {
+            hideCreateOverlay()
+            showToast("Create Study clicked")
+            // TODO: Navigate to create study screen
+        }
+
+        btnCreateSession.setOnClickListener {
+            hideCreateOverlay()
+            showToast("Create Session clicked")
+            // TODO: Navigate to create session screen
+        }
+    }
+
+    private fun showCreateOverlay() {
+        createOverlay.visibility = View.VISIBLE
+        createOverlay.alpha = 0f
+        createOverlay.animate()
+            .alpha(1f)
+            .setDuration(200)
+            .start()
+    }
+
+    private fun hideCreateOverlay() {
+        createOverlay.animate()
+            .alpha(0f)
+            .setDuration(200)
+            .withEndAction {
+                createOverlay.visibility = View.GONE
+            }
+            .start()
     }
 
     private fun setupSearch() {
@@ -197,8 +269,7 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
 
-        // Logout buttons
-        btnLogout.setOnClickListener { logout() }
+        // Apenas o logout do drawer
         btnDrawerLogout.setOnClickListener { logout() }
 
         btnProfile.setOnClickListener {
@@ -422,7 +493,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (createOverlay.visibility == View.VISIBLE) {
+            hideCreateOverlay()
+        } else if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
