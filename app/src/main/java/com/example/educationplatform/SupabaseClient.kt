@@ -269,6 +269,62 @@ object SupabaseClient {
         }
     }
     
+    suspend fun changePassword(currentPassword: String, newPassword: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== CHANGE PASSWORD REQUEST ===")
+                
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+                
+                val validToken = tokenResult.getOrNull()!!
+                
+                val url = URL("$SUPABASE_URL/auth/v1/user")
+                val connection = url.openConnection() as HttpURLConnection
+                
+                connection.requestMethod = "PUT"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+                
+                val jsonBody = JSONObject().apply {
+                    put("password", newPassword)
+                }
+                
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+                
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+                
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+                
+                Log.d("SupabaseClient", "Change Password Response Code: $responseCode")
+                Log.d("SupabaseClient", "Change Password Response: $response")
+                
+                if (responseCode in 200..299) {
+                    Result.success("Password changed successfully")
+                } else {
+                    Result.failure(Exception("Failed to change password: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Change Password Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+    
     suspend fun getSubjectsWithCategories(): Result<String> {
         return withContext(Dispatchers.IO) {
             try {
@@ -409,6 +465,259 @@ object SupabaseClient {
                 }
             } catch (e: Exception) {
                 Log.e("SupabaseClient", "❌ ToggleFollow Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+    
+    suspend fun getUserProfile(): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== GET USER PROFILE REQUEST ===")
+            
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+            
+                val validToken = tokenResult.getOrNull()!!
+            
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/get_user_profile")
+                val connection = url.openConnection() as HttpURLConnection
+            
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.doOutput = true
+            
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write("{}")
+                writer.flush()
+                writer.close()
+            
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+            
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+            
+                Log.d("SupabaseClient", "Get Profile Response Code: $responseCode")
+                Log.d("SupabaseClient", "Get Profile Response: $response")
+            
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to get profile: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Get Profile Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun updateUserProfile(name: String, bio: String, profileImageUrl: String?): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== UPDATE USER PROFILE REQUEST ===")
+            
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+            
+                val validToken = tokenResult.getOrNull()!!
+            
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/update_user_profile")
+                val connection = url.openConnection() as HttpURLConnection
+            
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.doOutput = true
+            
+                val jsonBody = JSONObject().apply {
+                    put("user_name", name)
+                    put("user_bio", bio)
+                    if (profileImageUrl != null) {
+                        put("profile_image_url", profileImageUrl)
+                    }
+                }
+            
+                Log.d("SupabaseClient", "Update Profile Request: $jsonBody")
+            
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+            
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+            
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+            
+                Log.d("SupabaseClient", "Update Profile Response Code: $responseCode")
+                Log.d("SupabaseClient", "Update Profile Response: $response")
+            
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to update profile: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Update Profile Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun uploadProfileImage(imageBytes: ByteArray): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== UPLOAD PROFILE IMAGE REQUEST ===")
+                Log.d("SupabaseClient", "Image size: ${imageBytes.size} bytes")
+            
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+            
+                val validToken = tokenResult.getOrNull()!!
+                val fileName = "profile_${System.currentTimeMillis()}.jpg"
+                
+                Log.d("SupabaseClient", "Uploading file: $fileName")
+                
+                // Upload directly to the bucket
+                val url = URL("$SUPABASE_URL/storage/v1/object/profile-images/$fileName")
+                val connection = url.openConnection() as HttpURLConnection
+            
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.setRequestProperty("Content-Type", "image/jpeg")
+                connection.setRequestProperty("Cache-Control", "3600")
+                connection.setRequestProperty("x-upsert", "true")
+                connection.doOutput = true
+                connection.doInput = true
+            
+                Log.d("SupabaseClient", "Writing image bytes...")
+                val outputStream = connection.outputStream
+                outputStream.write(imageBytes)
+                outputStream.flush()
+                outputStream.close()
+            
+                val responseCode = connection.responseCode
+                Log.d("SupabaseClient", "Upload response code: $responseCode")
+                
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+            
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+            
+                Log.d("SupabaseClient", "Upload Image Response Code: $responseCode")
+                Log.d("SupabaseClient", "Upload Image Response: $response")
+            
+                if (responseCode in 200..299) {
+                    val publicUrl = "$SUPABASE_URL/storage/v1/object/public/profile-images/$fileName"
+                    Log.d("SupabaseClient", "✅ Image uploaded successfully: $publicUrl")
+                    Result.success(publicUrl)
+                } else {
+                    Log.e("SupabaseClient", "❌ Upload failed: $responseCode - $response")
+                    
+                    // If bucket doesn't exist, try to create it first
+                    if (responseCode == 404 || response.contains("bucket")) {
+                        Log.d("SupabaseClient", "Bucket might not exist, trying to create...")
+                        val createResult = createProfileImagesBucket()
+                        if (createResult.isSuccess) {
+                            // Retry upload after creating bucket
+                            return@withContext uploadProfileImage(imageBytes)
+                        }
+                    }
+                    
+                    Result.failure(Exception("Failed to upload image: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Upload Image Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+    
+    private suspend fun createProfileImagesBucket(): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== CREATE BUCKET REQUEST ===")
+                
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+                
+                val validToken = tokenResult.getOrNull()!!
+                
+                val url = URL("$SUPABASE_URL/storage/v1/bucket")
+                val connection = url.openConnection() as HttpURLConnection
+                
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.doOutput = true
+                
+                val bucketJson = JSONObject().apply {
+                    put("id", "profile-images")
+                    put("name", "profile-images")
+                    put("public", true)
+                    put("file_size_limit", 52428800) // 50MB
+                    put("allowed_mime_types", listOf("image/jpeg", "image/png", "image/webp"))
+                }
+                
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(bucketJson.toString())
+                writer.flush()
+                writer.close()
+                
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+                
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+                
+                Log.d("SupabaseClient", "Create Bucket Response Code: $responseCode")
+                Log.d("SupabaseClient", "Create Bucket Response: $response")
+                
+                if (responseCode in 200..299) {
+                    Log.d("SupabaseClient", "✅ Bucket created successfully")
+                    Result.success("Bucket created")
+                } else {
+                    Log.e("SupabaseClient", "❌ Failed to create bucket: $responseCode - $response")
+                    Result.failure(Exception("Failed to create bucket: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Create Bucket Error", e)
                 Result.failure(Exception("Connection error: ${e.message}"))
             }
         }

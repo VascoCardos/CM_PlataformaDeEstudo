@@ -8,181 +8,249 @@
 8        android:minSdkVersion="24"
 9        android:targetSdkVersion="34" />
 10
-11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:5:5-67
-11-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:5:22-64
-12
-13    <permission
-13-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
-14        android:name="com.veducation.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-14-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
-15        android:protectionLevel="signature" />
-15-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+11    <!-- Permissões para internet -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:6:5-67
+12-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:6:22-64
+13
+14    <!-- Permissões para câmera -->
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:9:5-65
+15-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:9:22-62
 16
-17    <uses-permission android:name="com.veducation.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-17-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
-17-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
-18
-19    <application
-19-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:7:5-60:19
-20        android:allowBackup="true"
-20-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:8:9-35
-21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-21-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
-22        android:debuggable="true"
-23        android:extractNativeLibs="false"
-24        android:icon="@drawable/v_education_logo"
-24-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:9:9-50
-25        android:label="@string/app_name"
-25-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:10:9-41
-26        android:roundIcon="@drawable/v_education_logo"
-26-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:11:9-55
-27        android:supportsRtl="true"
-27-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:12:9-35
-28        android:testOnly="true"
-29        android:theme="@style/Theme.EducationPlatform" >
-29-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:13:9-55
-30        <activity
-30-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:15:9-23:20
-31            android:name="com.veducation.app.PreStartActivity"
-31-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:16:13-45
-32            android:exported="true"
-32-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:17:13-36
-33            android:screenOrientation="portrait" >
-33-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:18:13-49
-34            <intent-filter>
-34-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:19:13-22:29
-35                <action android:name="android.intent.action.MAIN" />
-35-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:20:17-69
-35-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:20:25-66
-36
-37                <category android:name="android.intent.category.LAUNCHER" />
-37-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:21:17-77
-37-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:21:27-74
-38            </intent-filter>
-39        </activity>
-40        <activity
-40-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:25:9-28:52
-41            android:name="com.veducation.app.StartActivity"
-41-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:26:13-42
-42            android:exported="false"
-42-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:27:13-37
-43            android:screenOrientation="portrait" />
-43-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:28:13-49
-44        <activity
-44-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:30:9-33:52
-45            android:name="com.veducation.app.FirstPageActivity"
-45-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:31:13-46
-46            android:exported="false"
-46-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:32:13-37
-47            android:screenOrientation="portrait" />
-47-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:13-49
-48        <activity
-48-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:35:9-38:52
-49            android:name="com.veducation.app.LoginActivity"
-49-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:36:13-42
-50            android:exported="false"
-50-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:37:13-37
-51            android:screenOrientation="portrait" />
-51-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:38:13-49
-52        <activity
-52-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:40:9-43:52
-53            android:name="com.veducation.app.CreateAccountActivity"
-53-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:41:13-50
-54            android:exported="false"
-54-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:42:13-37
-55            android:screenOrientation="portrait" />
-55-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:43:13-49
+17    <!-- Permissões para galeria (Android 13+) -->
+18    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+18-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:12:5-76
+18-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:12:22-73
+19
+20    <!-- Permissões para galeria (Android 12 e anteriores) -->
+21    <uses-permission
+21-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:15:5-16:38
+22        android:name="android.permission.READ_EXTERNAL_STORAGE"
+22-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:15:22-77
+23        android:maxSdkVersion="32" />
+23-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:16:9-35
+24
+25    <!-- Permissão para escrever (se necessário) -->
+26    <uses-permission
+26-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:19:5-20:38
+27        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+27-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:19:22-78
+28        android:maxSdkVersion="28" />
+28-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:20:9-35
+29
+30    <!-- Features opcionais -->
+31    <uses-feature
+31-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:23:5-85
+32        android:name="android.hardware.camera"
+32-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:23:19-57
+33        android:required="false" />
+33-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:23:58-82
+34    <uses-feature
+34-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:24:5-95
+35        android:name="android.hardware.camera.autofocus"
+35-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:24:19-67
+36        android:required="false" />
+36-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:24:68-92
+37
+38    <permission
+38-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+39        android:name="com.veducation.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+39-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+40        android:protectionLevel="signature" />
+40-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+41
+42    <uses-permission android:name="com.veducation.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+42-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+42-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+43
+44    <application
+44-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:26:5-96:19
+45        android:allowBackup="true"
+45-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:27:9-35
+46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+46-->[androidx.core:core:1.12.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7f76b6ee10c363ab237345ec85acc133\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+47        android:debuggable="true"
+48        android:extractNativeLibs="false"
+49        android:icon="@drawable/v_education_logo"
+49-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:28:9-50
+50        android:label="@string/app_name"
+50-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:29:9-41
+51        android:requestLegacyExternalStorage="true"
+51-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:9-52
+52        android:roundIcon="@drawable/v_education_logo"
+52-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:30:9-55
+53        android:supportsRtl="true"
+53-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:31:9-35
+54        android:testOnly="true"
+55        android:theme="@style/Theme.EducationPlatform" >
+55-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:32:9-55
 56        <activity
-56-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:45:9-48:52
-57            android:name="com.veducation.app.MainActivity"
-57-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:46:13-41
-58            android:exported="false"
-58-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:47:13-37
-59            android:screenOrientation="portrait" />
-59-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:48:13-49
-60        <activity
-60-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:50:9-53:52
-61            android:name="com.veducation.app.SearchActivity"
-61-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:51:13-43
-62            android:exported="false"
-62-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:52:13-37
-63            android:screenOrientation="portrait" />
-63-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:53:13-49
-64        <activity
-64-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:55:9-58:52
-65            android:name="com.veducation.app.SearchResultsActivity"
-65-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:56:13-50
-66            android:exported="false"
-66-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:57:13-37
-67            android:screenOrientation="portrait" />
-67-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:58:13-49
-68
-69        <provider
-69-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-70            android:name="androidx.startup.InitializationProvider"
-70-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-71            android:authorities="com.veducation.app.androidx-startup"
-71-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-72            android:exported="false" >
-72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-73            <meta-data
-73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-74                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-74-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-75                android:value="androidx.startup" />
-75-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
-76            <meta-data
-76-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\3612b0ad2d757f69bfa24dc2c3088e9f\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-77                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-77-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\3612b0ad2d757f69bfa24dc2c3088e9f\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
-78                android:value="androidx.startup" />
-78-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\3612b0ad2d757f69bfa24dc2c3088e9f\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
-79            <meta-data
-79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-80                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
-81                android:value="androidx.startup" />
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-82        </provider>
-83
-84        <receiver
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-85            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-85-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-86            android:directBootAware="false"
-86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-87            android:enabled="true"
-87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-88            android:exported="true"
-88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-89            android:permission="android.permission.DUMP" >
-89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-90            <intent-filter>
-90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-91                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-92            </intent-filter>
-93            <intent-filter>
-93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-94                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-95            </intent-filter>
-96            <intent-filter>
-96-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-97                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
-98            </intent-filter>
-99            <intent-filter>
-99-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-100                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-100-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-100-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
-101            </intent-filter>
-102        </receiver>
-103    </application>
-104
-105</manifest>
+56-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:35:9-43:20
+57            android:name="com.veducation.app.PreStartActivity"
+57-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:36:13-45
+58            android:exported="true"
+58-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:37:13-36
+59            android:screenOrientation="portrait" >
+59-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:38:13-49
+60            <intent-filter>
+60-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:39:13-42:29
+61                <action android:name="android.intent.action.MAIN" />
+61-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:40:17-69
+61-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:40:25-66
+62
+63                <category android:name="android.intent.category.LAUNCHER" />
+63-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:41:17-77
+63-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:41:27-74
+64            </intent-filter>
+65        </activity>
+66        <activity
+66-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:45:9-48:52
+67            android:name="com.veducation.app.StartActivity"
+67-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:46:13-42
+68            android:exported="false"
+68-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:47:13-37
+69            android:screenOrientation="portrait" />
+69-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:48:13-49
+70        <activity
+70-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:50:9-53:52
+71            android:name="com.veducation.app.FirstPageActivity"
+71-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:51:13-46
+72            android:exported="false"
+72-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:52:13-37
+73            android:screenOrientation="portrait" />
+73-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:53:13-49
+74        <activity
+74-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:55:9-58:52
+75            android:name="com.veducation.app.LoginActivity"
+75-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:56:13-42
+76            android:exported="false"
+76-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:57:13-37
+77            android:screenOrientation="portrait" />
+77-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:58:13-49
+78        <activity
+78-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:60:9-63:52
+79            android:name="com.veducation.app.CreateAccountActivity"
+79-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:61:13-50
+80            android:exported="false"
+80-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:62:13-37
+81            android:screenOrientation="portrait" />
+81-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:63:13-49
+82        <activity
+82-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:65:9-68:52
+83            android:name="com.veducation.app.MainActivity"
+83-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:66:13-41
+84            android:exported="false"
+84-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:67:13-37
+85            android:screenOrientation="portrait" />
+85-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:68:13-49
+86        <activity
+86-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:70:9-73:52
+87            android:name="com.veducation.app.SearchActivity"
+87-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:71:13-43
+88            android:exported="false"
+88-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:72:13-37
+89            android:screenOrientation="portrait" />
+89-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:73:13-49
+90        <activity
+90-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:75:9-78:52
+91            android:name="com.veducation.app.SearchResultsActivity"
+91-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:76:13-50
+92            android:exported="false"
+92-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:77:13-37
+93            android:screenOrientation="portrait" />
+93-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:78:13-49
+94        <activity
+94-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:80:9-83:52
+95            android:name="com.veducation.app.ProfileActivity"
+95-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:81:13-44
+96            android:exported="false"
+96-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:82:13-37
+97            android:screenOrientation="portrait" />
+97-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:83:13-49
+98
+99        <!-- FileProvider para partilhar ficheiros (se necessário) -->
+100        <provider
+101            android:name="androidx.core.content.FileProvider"
+101-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:87:13-62
+102            android:authorities="com.veducation.app.fileprovider"
+102-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:88:13-64
+103            android:exported="false"
+103-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:89:13-37
+104            android:grantUriPermissions="true" >
+104-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:90:13-47
+105            <meta-data
+105-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:91:13-93:54
+106                android:name="android.support.FILE_PROVIDER_PATHS"
+106-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:92:17-67
+107                android:resource="@xml/file_paths" />
+107-->C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:93:17-51
+108        </provider>
+109        <provider
+109-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+110            android:name="androidx.startup.InitializationProvider"
+110-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+111            android:authorities="com.veducation.app.androidx-startup"
+111-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+112            android:exported="false" >
+112-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+113            <meta-data
+113-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+114                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+114-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+115                android:value="androidx.startup" />
+115-->[androidx.emoji2:emoji2:1.2.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\8fbbc4e57c568ef662ebc01107efd522\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+116            <meta-data
+116-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\3612b0ad2d757f69bfa24dc2c3088e9f\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+117                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+117-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\3612b0ad2d757f69bfa24dc2c3088e9f\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+118                android:value="androidx.startup" />
+118-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\3612b0ad2d757f69bfa24dc2c3088e9f\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+119            <meta-data
+119-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+120                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+120-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+121                android:value="androidx.startup" />
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+122        </provider>
+123
+124        <receiver
+124-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+125            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+125-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+126            android:directBootAware="false"
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+127            android:enabled="true"
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+128            android:exported="true"
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+129            android:permission="android.permission.DUMP" >
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+130            <intent-filter>
+130-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+131                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+132            </intent-filter>
+133            <intent-filter>
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+134                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+134-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+134-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+135            </intent-filter>
+136            <intent-filter>
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+137                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+137-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+137-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+138            </intent-filter>
+139            <intent-filter>
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+140                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+140-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+140-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7c839e768df8976229a61f1c35850af9\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+141            </intent-filter>
+142        </receiver>
+143    </application>
+144
+145</manifest>

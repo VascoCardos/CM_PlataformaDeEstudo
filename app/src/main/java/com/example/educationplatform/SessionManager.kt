@@ -49,6 +49,13 @@ class SessionManager(context: Context) {
         Log.d("SessionManager", "✅ Login session created for: $email (without refresh token)")
     }
     
+    fun updateUserName(newName: String) {
+        val editor = prefs.edit()
+        editor.putString(KEY_USER_NAME, newName)
+        editor.apply()
+        Log.d("SessionManager", "✅ User name updated to: $newName")
+    }
+    
     fun isLoggedIn(): Boolean {
         return prefs.getBoolean(KEY_IS_LOGGED_IN, false)
     }

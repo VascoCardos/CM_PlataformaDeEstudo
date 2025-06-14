@@ -294,6 +294,10 @@ attr circularflow_defaultAngle
 attr circularflow_defaultRadius
 attr circularflow_radiusInDP
 attr circularflow_viewCenter
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_circle_background_color
 attr clearsTag
 attr clickAction
 attr clockFaceBackgroundColor
@@ -2978,6 +2982,7 @@ drawable background1
 drawable background2
 drawable background3
 drawable background_circles
+drawable bio_background
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2986,6 +2991,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable button_cancel
 drawable button_secondary
 drawable button_unfollow
 drawable circle_background
@@ -3001,6 +3007,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable dialog_background
+drawable edit_profile_field
 drawable edit_text_background
 drawable followers_background
 drawable gradient_button
@@ -3016,10 +3023,12 @@ drawable ic_call_answer_video
 drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
+drawable ic_camera
 drawable ic_check
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_close
+drawable ic_edit
 drawable ic_eye
 drawable ic_file
 drawable ic_finance
@@ -3027,6 +3036,7 @@ drawable ic_help
 drawable ic_history
 drawable ic_home
 drawable ic_image
+drawable ic_info
 drawable ic_keyboard_black_24dp
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
@@ -3104,6 +3114,7 @@ drawable mtrl_switch_thumb_unchecked_pressed
 drawable mtrl_switch_track
 drawable mtrl_switch_track_decoration
 drawable mtrl_tabs_default_indicator
+drawable name_container_background
 drawable navigation_empty_icon
 drawable notification_action_background
 drawable notification_bg
@@ -3118,7 +3129,9 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable photo_upload_button
 drawable profile_circle_background
+drawable profile_placeholder
 drawable search_background
 drawable search_history_background
 drawable stats_background
@@ -3229,8 +3242,19 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id btnBack
+id btnCancel
+id btnCancelBio
+id btnCancelName
+id btnCancelPassword
+id btnChangeBio
+id btnChangeName
+id btnChangePassword
+id btnChangePhoto
 id btnClose
 id btnCloseDrawer
+id btnConfirmBio
+id btnConfirmName
+id btnConfirmPassword
 id btnContinueWithoutAccount
 id btnCreate
 id btnCreateAccount
@@ -3331,9 +3355,14 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id etConfirmNewPassword
 id etConfirmPassword
+id etCurrentPassword
 id etEmail
 id etName
+id etNewBio
+id etNewName
+id etNewPassword
 id etPassword
 id etSearch
 id etUsername
@@ -3393,8 +3422,11 @@ id ivIllustration
 id ivLogo
 id ivLogoWithName
 id ivProfileImage
+id ivProfilePhoto
 id ivSubjectImage
 id ivToggleConfirmPassword
+id ivToggleCurrentPassword
+id ivToggleNewPassword
 id ivTogglePassword
 id jumpToEnd
 id jumpToStart
@@ -3659,6 +3691,7 @@ id transition_transform
 id triangle
 id tvCategory
 id tvCategoryName
+id tvCharacterCount
 id tvContinueWithoutAccount
 id tvCreateAccount
 id tvCreateAccountTitle
@@ -3669,11 +3702,14 @@ id tvFollowers
 id tvForgotPassword
 id tvLogin
 id tvLoginTitle
+id tvNameInfo
+id tvNameStatus
 id tvNoHistory
 id tvResultsCount
 id tvSearchQuery
 id tvSearchTerm
 id tvSubjectName
+id tvUserBio
 id tvUserEmail
 id tvUserName
 id tvViewAll
@@ -3819,6 +3855,7 @@ layout activity_first_page
 layout activity_login
 layout activity_main
 layout activity_pre_start
+layout activity_profile
 layout activity_search
 layout activity_search_results
 layout activity_start
@@ -3838,6 +3875,10 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_change_bio
+layout dialog_change_name
+layout dialog_change_password
+layout dialog_edit_options
 layout dialog_subject_details
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
@@ -5222,6 +5263,7 @@ styleable Carousel carousel_alignment carousel_backwardTransition carousel_empty
 styleable CheckedTextView android_checkMark checkMarkCompat checkMarkTint checkMarkTintMode
 styleable Chip android_textAppearance android_textSize android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconTint checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical selectionRequired singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
 styleable CircularProgressIndicator indicatorDirectionCircular indicatorInset indicatorSize
 styleable ClockFaceView clockFaceBackgroundColor clockNumberTextColor
 styleable ClockHandView clockHandColor materialCircleRadius selectorSize
@@ -5344,3 +5386,4 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
+xml file_paths
