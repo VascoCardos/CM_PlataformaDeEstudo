@@ -1,0 +1,6 @@
+com.veducation.app.test.app-annotation-experimental-1.3.0-0 C:\Users\vasco\.gradle\caches\8.10.2\transforms\9c47e964accd8ef1e51d578807205efd\transformed\annotation-experimental-1.3.0\res
+com.veducation.app.test.app-core-1.5.0-1 C:\Users\vasco\.gradle\caches\8.10.2\transforms\add1fe4d88174e08135efdf208580418\transformed\core-1.5.0\res
+com.veducation.app.test.app-androidTest-2 C:\Users\vasco\Desktop\VEducation\app\build\generated\res\resValues\androidTest\debug
+com.veducation.app.test.app-mergeDebugAndroidTestResources-3 C:\Users\vasco\Desktop\VEducation\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.veducation.app.test.app-mergeDebugAndroidTestResources-4 C:\Users\vasco\Desktop\VEducation\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.veducation.app.test.app-debugAndroidTest-5 C:\Users\vasco\Desktop\VEducation\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
