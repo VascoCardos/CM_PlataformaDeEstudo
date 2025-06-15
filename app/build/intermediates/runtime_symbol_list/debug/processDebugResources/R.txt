@@ -3288,10 +3288,12 @@ int id btnCreateAccount 0x7f080076
 int id btnCreateFirstStudy 0x7f080077
 int id btnCreateSession 0x7f080078
 int id btnCreateStudy 0x7f080079
+int id btnDeleteStudy 0x7f08027f
 int id btnDownvote 0x7f08007a
 int id btnDrawerEditProfile 0x7f08007b
 int id btnDrawerLogout 0x7f08007c
 int id btnEditProfile 0x7f08007d
+int id btnEditStudy 0x7f080280
 int id btnFollow 0x7f08007e
 int id btnHome 0x7f08007f
 int id btnHomepage 0x7f080080

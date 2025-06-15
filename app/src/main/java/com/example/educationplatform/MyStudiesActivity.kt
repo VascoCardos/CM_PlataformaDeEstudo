@@ -1,5 +1,6 @@
 package com.veducation.app
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -62,8 +63,6 @@ class MyStudiesActivity : AppCompatActivity() {
     
     private lateinit var studiesAdapter: StudiesAdapter
     private val studies = mutableListOf<Study>()
-    
-    private var currentSort: String = "new"
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -324,7 +323,10 @@ class MyStudiesActivity : AppCompatActivity() {
             onVoteClick = { study, voteType -> voteOnStudy(study, voteType) },
             onCommentsClick = { study -> openComments(study) },
             onShareClick = { study -> shareStudy(study) },
-            onSaveClick = { study -> toggleSaveStudy(study) }
+            onSaveClick = { study -> toggleSaveStudy(study) },
+            onEditClick = { study -> editStudy(study) },
+            onDeleteClick = { study -> confirmDeleteStudy(study) },
+            showEditDelete = true // Show edit/delete buttons in My Studies
         )
         
         rvStudies.layoutManager = LinearLayoutManager(this)
@@ -431,6 +433,70 @@ class MyStudiesActivity : AppCompatActivity() {
         Log.d("MyStudies", "Showing empty state")
         emptyState.visibility = View.VISIBLE
         rvStudies.visibility = View.GONE
+    }
+    
+    private fun editStudy(study: Study) {
+        Log.d("MyStudies", "Editing study: ${study.title}")
+        
+        val intent = Intent(this, CreateStudyActivity::class.java).apply {
+            putExtra("EDIT_MODE", true)
+            putExtra("STUDY_ID", study.id)
+            putExtra("STUDY_TITLE", study.title)
+            putExtra("STUDY_DESCRIPTION", study.description)
+            putExtra("STUDY_CONTENT", study.content)
+            putExtra("STUDY_TYPE", study.studyType)
+            putExtra("SUBJECT_ID", study.subjectId)
+        }
+        startActivity(intent)
+    }
+    
+    private fun confirmDeleteStudy(study: Study) {
+        Log.d("MyStudies", "Confirming delete for study: ${study.title}")
+        
+        AlertDialog.Builder(this)
+            .setTitle("Delete Study")
+            .setMessage("Are you sure you want to delete \"${study.title}\"?\n\nThis will permanently delete the study and all associated comments, votes, and files. This action cannot be undone.")
+            .setPositiveButton("Delete") { _, _ ->
+                deleteStudy(study)
+            }
+            .setNegativeButton("Cancel", null)
+            .setIcon(R.drawable.ic_remove)
+            .show()
+    }
+    
+    private fun deleteStudy(study: Study) {
+        Log.d("MyStudies", "Deleting study: ${study.title}")
+        
+        lifecycleScope.launch {
+            try {
+                val result = SupabaseClient.deleteStudy(study.id)
+                
+                result.onSuccess { response ->
+                    Log.d("MyStudies", "✅ Study deleted successfully")
+                    
+                    // Remove from adapter
+                    studiesAdapter.removeStudy(study.id)
+                    
+                    // Update count
+                    tvStudiesCount.text = "${studies.size} studies"
+                    
+                    // Show empty state if no studies left
+                    if (studies.isEmpty()) {
+                        showEmptyState()
+                    }
+                    
+                    Toast.makeText(this@MyStudiesActivity, "Study deleted successfully", Toast.LENGTH_SHORT).show()
+                    
+                }.onFailure { error ->
+                    Log.e("MyStudies", "❌ Failed to delete study: ${error.message}")
+                    Toast.makeText(this@MyStudiesActivity, "Error deleting study: ${error.message}", Toast.LENGTH_LONG).show()
+                }
+                
+            } catch (e: Exception) {
+                Log.e("MyStudies", "❌ Exception deleting study", e)
+                Toast.makeText(this@MyStudiesActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
     }
     
     private fun voteOnStudy(study: Study, voteType: String) {

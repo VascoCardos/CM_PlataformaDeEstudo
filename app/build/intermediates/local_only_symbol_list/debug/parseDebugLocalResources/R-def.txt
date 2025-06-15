@@ -113,10 +113,12 @@ id btnCreateAccount
 id btnCreateFirstStudy
 id btnCreateSession
 id btnCreateStudy
+id btnDeleteStudy
 id btnDownvote
 id btnDrawerEditProfile
 id btnDrawerLogout
 id btnEditProfile
+id btnEditStudy
 id btnFollow
 id btnHome
 id btnHomepage

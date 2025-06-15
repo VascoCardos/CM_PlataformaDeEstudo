@@ -96,6 +96,29 @@
                     android:textSize="10sp"
                     android:textColor="@android:color/darker_gray" />
 
+                <!-- Edit and Delete buttons for My Studies -->
+                <ImageView
+                    android:id="@+id/btnEditStudy"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_edit"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:visibility="gone"
+                    app:tint="#4CAF50" />
+
+                <ImageView
+                    android:id="@+id/btnDeleteStudy"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_remove"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:padding="4dp"
+                    android:visibility="gone"
+                    app:tint="#F44336" />
+
             </LinearLayout>
 
             <!-- Title -->

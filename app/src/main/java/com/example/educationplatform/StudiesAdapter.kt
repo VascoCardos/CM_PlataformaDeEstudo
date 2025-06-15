@@ -17,7 +17,10 @@ class StudiesAdapter(
     private val onVoteClick: (Study, String) -> Unit,
     private val onCommentsClick: (Study) -> Unit,
     private val onShareClick: (Study) -> Unit,
-    private val onSaveClick: (Study) -> Unit
+    private val onSaveClick: (Study) -> Unit,
+    private val onEditClick: ((Study) -> Unit)? = null,
+    private val onDeleteClick: ((Study) -> Unit)? = null,
+    private val showEditDelete: Boolean = false
 ) : RecyclerView.Adapter<StudiesAdapter.StudyViewHolder>() {
 
     class StudyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -33,6 +36,8 @@ class StudiesAdapter(
         val tvCommentsCount: TextView = view.findViewById(R.id.tvCommentsCount)
         val btnShare: LinearLayout = view.findViewById(R.id.btnShare)
         val btnSave: ImageView = view.findViewById(R.id.btnSave)
+        val btnEditStudy: ImageView = view.findViewById(R.id.btnEditStudy)
+        val btnDeleteStudy: ImageView = view.findViewById(R.id.btnDeleteStudy)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudyViewHolder {
@@ -85,6 +90,15 @@ class StudiesAdapter(
             holder.btnSave.setColorFilter(Color.parseColor("#666666"))
         }
         
+        // Show/hide edit and delete buttons
+        if (showEditDelete) {
+            holder.btnEditStudy.visibility = View.VISIBLE
+            holder.btnDeleteStudy.visibility = View.VISIBLE
+        } else {
+            holder.btnEditStudy.visibility = View.GONE
+            holder.btnDeleteStudy.visibility = View.GONE
+        }
+        
         // Set click listeners
         holder.itemView.setOnClickListener { onStudyClick(study) }
         
@@ -101,6 +115,15 @@ class StudiesAdapter(
         holder.btnComments.setOnClickListener { onCommentsClick(study) }
         holder.btnShare.setOnClickListener { onShareClick(study) }
         holder.btnSave.setOnClickListener { onSaveClick(study) }
+        
+        // Edit and delete click listeners
+        holder.btnEditStudy.setOnClickListener { 
+            onEditClick?.invoke(study)
+        }
+        
+        holder.btnDeleteStudy.setOnClickListener { 
+            onDeleteClick?.invoke(study)
+        }
     }
 
     override fun getItemCount() = studies.size
@@ -110,6 +133,14 @@ class StudiesAdapter(
         if (index != -1) {
             studies[index] = updatedStudy
             notifyItemChanged(index)
+        }
+    }
+    
+    fun removeStudy(studyId: String) {
+        val index = studies.indexOfFirst { it.id == studyId }
+        if (index != -1) {
+            studies.removeAt(index)
+            notifyItemRemoved(index)
         }
     }
     

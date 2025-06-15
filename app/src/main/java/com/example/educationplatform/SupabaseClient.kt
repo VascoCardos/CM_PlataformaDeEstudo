@@ -1061,6 +1061,63 @@ object SupabaseClient {
         }
     }
 
+    suspend fun deleteStudy(studyId: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== DELETE STUDY ===")
+                Log.d("SupabaseClient", "Study ID: $studyId")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/delete_study")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("study_uuid", studyId)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Delete Study Response Code: $responseCode")
+                Log.d("SupabaseClient", "Delete Study Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to delete study: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Delete Study Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
     private suspend fun addFilesToStudy(studyId: String, fileUrls: List<String>, userId: String) {
         return withContext(Dispatchers.IO) {
             try {

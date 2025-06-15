@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_search_history_background.xml.flat",
-        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\search_history_background.xml"
-    },
-    {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\layout_activity_create_study.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\layout\\activity_create_study.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_search_history_background.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\search_history_background.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\layout_item_attached_file.xml.flat",
@@ -16,12 +16,12 @@
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\students_illustration.png"
     },
     {
-        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_menu.xml.flat",
-        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_menu.xml"
-    },
-    {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_finance.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_finance.xml"
+    },
+    {
+        "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_menu.xml.flat",
+        "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_menu.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_edit_text_background.xml.flat",
@@ -78,6 +78,10 @@
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_person.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_person.xml"
+    },
+    {
+        "merged": "com.veducation.app-debug-39:/layout_item_study.xml.flat",
+        "source": "com.veducation.app-main-41:/layout/item_study.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_photo_upload_button.xml.flat",
@@ -170,10 +174,6 @@
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_ic_bookmark.xml.flat",
         "source": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-main-41:\\drawable\\ic_bookmark.xml"
-    },
-    {
-        "merged": "com.veducation.app-debug-39:/layout_activity_my_studies.xml.flat",
-        "source": "com.veducation.app-main-41:/layout/activity_my_studies.xml"
     },
     {
         "merged": "C:\\Users\\vasco\\.gradle\\daemon\\8.10.2\\com.veducation.app-debug-39:\\drawable_button_secondary.xml.flat",
