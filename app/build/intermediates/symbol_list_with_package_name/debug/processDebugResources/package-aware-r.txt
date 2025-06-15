@@ -2095,6 +2095,9 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color purple_200
+color purple_500
+color purple_700
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -2108,10 +2111,13 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color teal_200
+color teal_700
 color text_primary
 color text_secondary
 color tooltip_background_dark
 color tooltip_background_light
+color transparent
 color warning
 color white
 dimen abc_action_bar_content_inset_material
@@ -3029,6 +3035,8 @@ drawable gradient_header
 drawable ic_add
 drawable ic_arrow_back
 drawable ic_arrow_back_black_24
+drawable ic_arrow_down
+drawable ic_arrow_up
 drawable ic_bookmark
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3041,6 +3049,7 @@ drawable ic_check
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_close
+drawable ic_comment
 drawable ic_edit
 drawable ic_eye
 drawable ic_file
@@ -3066,6 +3075,7 @@ drawable ic_search
 drawable ic_search_black_24
 drawable ic_session
 drawable ic_settings
+drawable ic_share
 drawable ic_statistics
 drawable ic_study
 drawable ic_subject_default
@@ -3150,6 +3160,7 @@ drawable search_background
 drawable search_history_background
 drawable stats_background
 drawable students_illustration
+drawable study_type_badge
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3268,6 +3279,7 @@ id btnChangePassword
 id btnChangePhoto
 id btnClose
 id btnCloseDrawer
+id btnComments
 id btnConfirmBio
 id btnConfirmName
 id btnConfirmPassword
@@ -3276,6 +3288,7 @@ id btnCreate
 id btnCreateAccount
 id btnCreateSession
 id btnCreateStudy
+id btnDownvote
 id btnDrawerEditProfile
 id btnDrawerLogout
 id btnEditProfile
@@ -3291,7 +3304,14 @@ id btnRemove
 id btnRemoveFile
 id btnSave
 id btnSearch
+id btnSessions
+id btnShare
 id btnSignUp
+id btnSortHot
+id btnSortNew
+id btnSortTop
+id btnStudies
+id btnUpvote
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -3394,6 +3414,7 @@ id etUsername
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fabCreateStudy
 id fade
 id fill
 id fill_horizontal
@@ -3611,6 +3632,7 @@ id rvFiles
 id rvPopular
 id rvSearchHistory
 id rvSearchResults
+id rvStudies
 id rvSubjects
 id save_non_transition_alpha
 id save_overlay_view
@@ -3721,9 +3743,11 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvAuthor
 id tvCategory
 id tvCategoryName
 id tvCharacterCount
+id tvCommentsCount
 id tvContentCount
 id tvContinueWithoutAccount
 id tvCreateAccount
@@ -3746,12 +3770,17 @@ id tvNoHistory
 id tvResultsCount
 id tvSearchQuery
 id tvSearchTerm
+id tvStudiesCount
+id tvStudyType
 id tvSubjectName
+id tvTimeAgo
+id tvTitle
 id tvUploadProgress
 id tvUserBio
 id tvUserEmail
 id tvUserName
 id tvViewAll
+id tvVoteCount
 id unchecked
 id uniform
 id unlabeled
@@ -3899,6 +3928,7 @@ layout activity_profile
 layout activity_search
 layout activity_search_results
 layout activity_start
+layout activity_subject_studies
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3926,6 +3956,7 @@ layout item_attached_file
 layout item_category
 layout item_popular_subject
 layout item_search_history
+layout item_study
 layout item_subject
 layout m3_alert_dialog
 layout m3_alert_dialog_actions

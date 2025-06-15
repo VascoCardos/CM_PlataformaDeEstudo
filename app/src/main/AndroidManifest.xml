@@ -95,6 +95,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".SubjectStudiesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <!-- FileProvider para partilhar ficheiros (se necessário) -->
         <provider
             android:name="androidx.core.content.FileProvider"

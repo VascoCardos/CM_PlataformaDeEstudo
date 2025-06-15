@@ -669,11 +669,11 @@ object SupabaseClient {
                 }
 
                 val validToken = tokenResult.getOrNull()!!
-
+                
                 // Super clean filename
                 val cleanFileName = fileName.replace("[^a-zA-Z0-9._-]".toRegex(), "_")
                 val uniqueFileName = "${System.currentTimeMillis()}_$cleanFileName"
-
+                
                 Log.d("SupabaseClient", "🔧 Uploading as: $uniqueFileName")
 
                 // MINIMAL APPROACH - Just like profile images but even simpler
@@ -687,7 +687,7 @@ object SupabaseClient {
                 connection.doOutput = true
 
                 Log.d("SupabaseClient", "⬆️ Uploading...")
-
+                
                 // Write file
                 connection.outputStream.use { it.write(fileBytes) }
 
@@ -708,7 +708,7 @@ object SupabaseClient {
                 } else {
                     Log.e("SupabaseClient", "❌ Upload failed: $responseCode")
                     Log.e("SupabaseClient", "❌ Error details: $response")
-
+                    
                     val errorMsg = when (responseCode) {
                         400 -> "Invalid file or bucket configuration. Check bucket setup."
                         401 -> "Authentication failed. Please login again."
@@ -717,7 +717,7 @@ object SupabaseClient {
                         413 -> "File too large. Maximum 50MB allowed."
                         else -> "Upload failed with code $responseCode"
                     }
-
+                    
                     Result.failure(Exception(errorMsg))
                 }
             } catch (e: Exception) {
@@ -751,7 +751,7 @@ object SupabaseClient {
 
                 val validToken = tokenResult.getOrNull()!!
                 val userId = getCurrentUserId()
-
+                
                 if (userId == null) {
                     return@withContext Result.failure(Exception("Unable to get user ID"))
                 }
@@ -802,14 +802,14 @@ object SupabaseClient {
 
                 if (responseCode in 200..299) {
                     Log.d("SupabaseClient", "✅ Study created successfully!")
-
+                    
                     // Se há arquivos, adicionar eles também
                     if (fileUrls.isNotEmpty()) {
                         val studyResponse = JSONArray(response)
                         if (studyResponse.length() > 0) {
                             val studyId = studyResponse.getJSONObject(0).getString("id")
                             Log.d("SupabaseClient", "📎 Adding ${fileUrls.size} files to study $studyId")
-
+                            
                             // Adicionar arquivos (mas não falhar se der erro)
                             try {
                                 addFilesToStudy(studyId, fileUrls, userId)
@@ -818,7 +818,7 @@ object SupabaseClient {
                             }
                         }
                     }
-
+                    
                     Result.success(response)
                 } else {
                     Log.e("SupabaseClient", "❌ Failed to create study: $responseCode")
@@ -827,6 +827,179 @@ object SupabaseClient {
             } catch (e: Exception) {
                 Log.e("SupabaseClient", "❌ Create Study Error", e)
                 Result.failure(Exception("Error creating study: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun getStudiesBySubject(subjectId: String, sortBy: String = "hot"): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== GET STUDIES BY SUBJECT ===")
+                Log.d("SupabaseClient", "Subject ID: $subjectId, Sort: $sortBy")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/get_studies_by_subject")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("subject_uuid", subjectId)
+                    put("sort_by", sortBy)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Get Studies Response Code: $responseCode")
+                Log.d("SupabaseClient", "Get Studies Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to get studies: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Get Studies Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun voteStudy(studyId: String, voteType: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== VOTE STUDY ===")
+                Log.d("SupabaseClient", "Study ID: $studyId, Vote: $voteType")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/vote_study")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("study_uuid", studyId)
+                    put("vote_type", voteType)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Vote Study Response Code: $responseCode")
+                Log.d("SupabaseClient", "Vote Study Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to vote: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Vote Study Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun toggleStudySave(studyId: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== TOGGLE STUDY SAVE ===")
+                Log.d("SupabaseClient", "Study ID: $studyId")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/toggle_study_save")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("study_uuid", studyId)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Toggle Save Response Code: $responseCode")
+                Log.d("SupabaseClient", "Toggle Save Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to toggle save: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Toggle Save Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
             }
         }
     }
@@ -876,16 +1049,189 @@ object SupabaseClient {
             val token = accessToken ?: return null
             val parts = token.split(".")
             if (parts.size != 3) return null
-
+        
             val payload = parts[1]
             val decodedBytes = android.util.Base64.decode(payload, android.util.Base64.URL_SAFE)
             val decodedString = String(decodedBytes)
             val jsonObject = JSONObject(decodedString)
-
+        
             jsonObject.getString("sub") // 'sub' contains the user ID in JWT
         } catch (e: Exception) {
             Log.e("SupabaseClient", "Error extracting user ID from token", e)
             null
+        }
+    }
+
+    suspend fun getStudyComments(studyId: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== GET STUDY COMMENTS ===")
+                Log.d("SupabaseClient", "Study ID: $studyId")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/get_study_comments")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("study_uuid", studyId)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Get Comments Response Code: $responseCode")
+                Log.d("SupabaseClient", "Get Comments Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to get comments: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Get Comments Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun postComment(studyId: String, content: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== POST COMMENT ===")
+                Log.d("SupabaseClient", "Study ID: $studyId")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/post_comment")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("study_uuid", studyId)
+                    put("comment_content", content)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Post Comment Response Code: $responseCode")
+                Log.d("SupabaseClient", "Post Comment Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to post comment: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Post Comment Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun voteComment(commentId: String, voteType: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== VOTE COMMENT ===")
+                Log.d("SupabaseClient", "Comment ID: $commentId, Vote: $voteType")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/vote_comment")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("comment_uuid", commentId)
+                    put("vote_type_param", voteType)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Vote Comment Response Code: $responseCode")
+                Log.d("SupabaseClient", "Vote Comment Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to vote comment: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Vote Comment Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
         }
     }
 

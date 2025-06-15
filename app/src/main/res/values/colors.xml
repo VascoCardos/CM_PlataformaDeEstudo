@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Android Default Colors -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    
+    <!-- Basic Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="transparent">#00000000</color>
+    
     <!-- Gradient Colors -->
     <color name="orange_start">#FA7E01</color>
     <color name="orange_end">#FBC217</color>
     <color name="orange_start_2">#F9881F</color>
     <color name="orange_end_2">#FF774C</color>
+    
+    <!-- Gray Colors -->
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#CCCCCC</color>
+    <color name="gray_dark">#666666</color>
+    
+    <!-- Primary App Colors -->
+    <color name="primary">#4A90E2</color>
+    <color name="accent">#FF6B35</color>
     
     <!-- Additional colors -->
     <color name="text_primary">#2C3E50</color>
@@ -15,14 +33,7 @@
     <color name="background_light">#F8F9FA</color>
     <color name="card_background">#FFFFFF</color>
     <color name="divider">#E8E8E8</color>
-    <color name="accent">#FF6B35</color>
-    <color name="primary">#4A90E2</color>
     <color name="success">#27AE60</color>
     <color name="warning">#F39C12</color>
     <color name="error">#E74C3C</color>
-    
-    <!-- Gray colors -->
-    <color name="gray_light">#F5F5F5</color>
-    <color name="gray_medium">#CCCCCC</color>
-    <color name="gray_dark">#666666</color>
 </resources>

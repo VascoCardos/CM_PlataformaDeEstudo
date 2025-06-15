@@ -15,7 +15,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 class PopularSubjectsAdapter(
     private val subjects: List<Subject>,
     private val onSubjectClick: (Subject) -> Unit,
-    private val onFollowClick: (Subject) -> Unit
+    private val onFollowClick: (Subject) -> Unit,
+    private val onViewStudiesClick: (Subject) -> Unit,
+    private val onViewSessionsClick: (Subject) -> Unit
 ) : RecyclerView.Adapter<PopularSubjectsAdapter.PopularViewHolder>() {
 
     class PopularViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,6 +26,8 @@ class PopularSubjectsAdapter(
         val tvFollowers: TextView = view.findViewById(R.id.tvFollowers)
         val btnFollow: ImageView = view.findViewById(R.id.btnFollow)
         val ivSubjectImage: ImageView = view.findViewById(R.id.ivSubjectImage)
+        val btnStudies: TextView = view.findViewById(R.id.btnStudies)
+        val btnSessions: TextView = view.findViewById(R.id.btnSessions)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularViewHolder {
@@ -76,6 +80,16 @@ class PopularSubjectsAdapter(
         // Handle card click
         holder.cardView.setOnClickListener {
             onSubjectClick(subject)
+        }
+        
+        // Handle Studies button click
+        holder.btnStudies.setOnClickListener {
+            onViewStudiesClick(subject)
+        }
+        
+        // Handle Sessions button click
+        holder.btnSessions.setOnClickListener {
+            onViewSessionsClick(subject)
         }
     }
 

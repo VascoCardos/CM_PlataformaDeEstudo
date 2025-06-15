@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:99:9-107:20
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:104:9-112:20
 	android:grantUriPermissions
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:103:13-47
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:108:13-47
 	android:authorities
 		INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:101:13-64
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:106:13-64
 	android:exported
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:102:13-37
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:107:13-37
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:100:13-62
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:105:13-62
 manifest
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-111:12
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-111:12
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-111:12
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-111:12
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-116:12
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-116:12
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-116:12
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:2:1-116:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\f96f0d91e83afee0117ab2ff2be3b4ca\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7475ea3538e07f70091124452b5506f2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\vasco\.gradle\caches\8.10.2\transforms\09ea464a679a1471cb2f19d0b0fa51be\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -129,8 +129,8 @@ ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:31
 	android:name
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:31:19-67
 application
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:5-109:19
-INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:5-109:19
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:5-114:19
+INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:33:5-114:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\f96f0d91e83afee0117ab2ff2be3b4ca\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\vasco\.gradle\caches\8.10.2\transforms\f96f0d91e83afee0117ab2ff2be3b4ca\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\vasco\.gradle\caches\8.10.2\transforms\7475ea3538e07f70091124452b5506f2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -259,12 +259,20 @@ ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:93
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:95:13-37
 	android:name
 		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:94:13-48
-meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:104:13-106:54
-	android:resource
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:106:17-51
+activity#com.veducation.app.SubjectStudiesActivity
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:98:9-101:52
+	android:screenOrientation
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:101:13-49
+	android:exported
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:100:13-37
 	android:name
-		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:105:17-67
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:99:13-51
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:109:13-111:54
+	android:resource
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:111:17-51
+	android:name
+		ADDED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml:110:17-67
 uses-sdk
 INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\vasco\Desktop\VEducation\app\src\main\AndroidManifest.xml

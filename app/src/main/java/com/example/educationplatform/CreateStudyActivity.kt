@@ -62,14 +62,14 @@ class CreateStudyActivity : AppCompatActivity() {
     private lateinit var attachedFilesAdapter: AttachedFilesAdapter
     private val attachedFiles = mutableListOf<AttachedFile>()
     private val subjects = mutableListOf<Subject>()
-
+    
     private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
     // Study types
     private val studyTypes = arrayOf(
         "Question" to "question",
-        "Need Help" to "need_help",
+        "Need Help" to "need_help", 
         "Documentation" to "documentation",
         "Summary" to "summary",
         "Other" to "other"
@@ -77,21 +77,21 @@ class CreateStudyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        
         // Force portrait orientation
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-
+        
         setContentView(R.layout.activity_create_study)
-
+        
         sessionManager = SessionManager(this)
-
+        
         // Check if user is logged in
         if (!sessionManager.isLoggedIn()) {
             Log.w("CreateStudy", "User not logged in, redirecting to login")
             finish()
             return
         }
-
+        
         initViews()
         setupActivityResultLaunchers()
         setupListeners()
@@ -129,22 +129,22 @@ class CreateStudyActivity : AppCompatActivity() {
                 }
             }
         }
-
+        
         // Permission launcher
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             Log.d("CreateStudy", "Permission results: $permissions")
-
+            
             val hasStoragePermission = when {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
                     permissions[Manifest.permission.READ_MEDIA_IMAGES] == true ||
-                            permissions[Manifest.permission.READ_MEDIA_VIDEO] == true ||
-                            permissions[Manifest.permission.READ_MEDIA_AUDIO] == true
+                    permissions[Manifest.permission.READ_MEDIA_VIDEO] == true ||
+                    permissions[Manifest.permission.READ_MEDIA_AUDIO] == true
                 }
                 else -> {
                     permissions[Manifest.permission.READ_EXTERNAL_STORAGE] == true
                 }
             }
-
+            
             if (hasStoragePermission) {
                 Log.d("CreateStudy", "Storage permission granted")
                 openFilePicker()
@@ -161,7 +161,7 @@ class CreateStudyActivity : AppCompatActivity() {
         btnSave.setOnClickListener { createStudy() }
         btnCreateStudy.setOnClickListener { createStudy() }
         btnAddFile.setOnClickListener { checkPermissionsAndOpenFilePicker() }
-
+        
         // Character counters
         etDescription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -170,7 +170,7 @@ class CreateStudyActivity : AppCompatActivity() {
                 updateCharacterCount(s.toString(), tvDescriptionCount, 500)
             }
         })
-
+        
         etContent.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -189,7 +189,7 @@ class CreateStudyActivity : AppCompatActivity() {
         )
         studyTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerStudyType.adapter = studyTypeAdapter
-
+        
         // Subject Spinner - will be populated when subjects are loaded
         val subjectAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
         subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -208,7 +208,7 @@ class CreateStudyActivity : AppCompatActivity() {
 
     private fun loadSubjects() {
         Log.d("CreateStudy", "Loading subjects...")
-
+        
         lifecycleScope.launch {
             try {
                 val result = SupabaseClient.getSubjectsWithCategories()
@@ -217,7 +217,7 @@ class CreateStudyActivity : AppCompatActivity() {
                 }.onFailure { error ->
                     Log.e("CreateStudy", "Error loading subjects: ${error.message}")
                     showToast("Error loading subjects: ${error.message}")
-
+                    
                     // If authentication failed, redirect to login
                     if (error.message?.contains("401") == true || error.message?.contains("authentication") == true) {
                         sessionManager.logout()
@@ -234,13 +234,13 @@ class CreateStudyActivity : AppCompatActivity() {
     private fun parseSubjects(jsonData: String) {
         try {
             Log.d("CreateStudy", "Parsing subjects data: ${jsonData.take(200)}...")
-
+            
             val jsonArray = JSONArray(jsonData)
             subjects.clear()
-
+            
             for (i in 0 until jsonArray.length()) {
                 val item = jsonArray.getJSONObject(i)
-
+                
                 try {
                     // Handle different possible response formats
                     val isFollowed = when {
@@ -248,10 +248,10 @@ class CreateStudyActivity : AppCompatActivity() {
                         item.has("is_followed") -> item.getBoolean("is_followed")
                         else -> false
                     }
-
+                    
                     // Only add subjects that the user is following
                     if (!isFollowed) continue
-
+                    
                     val subject = Subject(
                         id = item.getString("id"),
                         name = item.getString("name"),
@@ -266,20 +266,20 @@ class CreateStudyActivity : AppCompatActivity() {
                         categoryColor = item.optString("category_color", "#6366F1")
                     )
                     subjects.add(subject)
-
+                    
                 } catch (e: Exception) {
                     Log.w("CreateStudy", "Error parsing subject at index $i: ${e.message}")
                     continue
                 }
             }
-
+            
             // Update spinner
             runOnUiThread {
                 updateSubjectSpinner()
             }
-
+            
             Log.d("CreateStudy", "Loaded ${subjects.size} followed subjects")
-
+            
         } catch (e: Exception) {
             Log.e("CreateStudy", "Error parsing subjects", e)
             runOnUiThread {
@@ -289,7 +289,7 @@ class CreateStudyActivity : AppCompatActivity() {
             }
         }
     }
-
+    
     private fun updateSubjectSpinner() {
         if (subjects.isEmpty()) {
             // Show message if user is not following any subjects
@@ -297,11 +297,11 @@ class CreateStudyActivity : AppCompatActivity() {
             adapter.clear()
             adapter.add("No subjects followed - Follow subjects first")
             adapter.notifyDataSetChanged()
-
+            
             // Disable the create button if no subjects are followed
             btnCreateStudy.isEnabled = false
             btnSave.isEnabled = false
-
+            
             showToast("You need to follow at least one subject to create a study")
         } else {
             val subjectNames = subjects.map { it.name }
@@ -309,13 +309,13 @@ class CreateStudyActivity : AppCompatActivity() {
             adapter.clear()
             adapter.addAll(subjectNames)
             adapter.notifyDataSetChanged()
-
+            
             // Re-enable buttons
             btnCreateStudy.isEnabled = true
             btnSave.isEnabled = true
         }
     }
-
+    
     private fun addDefaultSubjects() {
         // Add some default subjects for testing
         subjects.clear()
@@ -352,7 +352,7 @@ class CreateStudyActivity : AppCompatActivity() {
 
     private fun checkPermissionsAndOpenFilePicker() {
         val permissions = mutableListOf<String>()
-
+        
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
@@ -379,7 +379,7 @@ class CreateStudyActivity : AppCompatActivity() {
                 }
             }
         }
-
+        
         if (permissions.isNotEmpty()) {
             Log.d("CreateStudy", "Requesting permissions: $permissions")
             permissionLauncher.launch(permissions.toTypedArray())
@@ -401,7 +401,7 @@ class CreateStudyActivity : AppCompatActivity() {
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             ))
         }
-
+        
         try {
             filePickerLauncher.launch(Intent.createChooser(intent, "Select File"))
         } catch (e: Exception) {
@@ -416,30 +416,30 @@ class CreateStudyActivity : AppCompatActivity() {
                 if (it.moveToFirst()) {
                     val nameIndex = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
                     val sizeIndex = it.getColumnIndex(OpenableColumns.SIZE)
-
+                    
                     val fileName = if (nameIndex >= 0) it.getString(nameIndex) else "Unknown"
                     val fileSize = if (sizeIndex >= 0) it.getLong(sizeIndex) else 0L
-
+                    
                     // Check file size (50MB limit)
                     val maxSize = 50 * 1024 * 1024 // 50MB
                     if (fileSize > maxSize) {
                         showToast("File size must be less than 50MB")
                         return
                     }
-
+                    
                     val fileType = getMimeType(uri) ?: "application/octet-stream"
-
+                    
                     val attachedFile = AttachedFile(
                         name = fileName,
                         size = fileSize,
                         uri = uri.toString(),
                         type = fileType
                     )
-
+                    
                     attachedFiles.add(attachedFile)
                     attachedFilesAdapter.notifyItemInserted(attachedFiles.size - 1)
                     updateFilesVisibility()
-
+                    
                     showToast("File attached: $fileName")
                 }
             }
@@ -452,7 +452,7 @@ class CreateStudyActivity : AppCompatActivity() {
     private fun updateCharacterCount(text: String, countView: TextView, maxLength: Int) {
         val count = text.length
         countView.text = "$count/$maxLength"
-
+        
         when {
             count > maxLength -> countView.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
             count > maxLength * 0.9 -> countView.setTextColor(ContextCompat.getColor(this, android.R.color.holo_orange_dark))
@@ -468,67 +468,67 @@ class CreateStudyActivity : AppCompatActivity() {
         val title = etTitle.text.toString().trim()
         val description = etDescription.text.toString().trim()
         val content = etContent.text.toString().trim()
-
+        
         // Validation
         if (title.isEmpty()) {
             showToast("Title is required")
             etTitle.requestFocus()
             return
         }
-
+        
         if (content.isEmpty()) {
             showToast("Content is required")
             etContent.requestFocus()
             return
         }
-
+        
         if (subjects.isEmpty()) {
             showToast("You need to follow at least one subject to create a study")
             return
         }
-
+        
         if (spinnerSubject.selectedItemPosition == AdapterView.INVALID_POSITION || spinnerSubject.selectedItemPosition >= subjects.size) {
             showToast("Please select a valid subject")
             return
         }
-
+        
         val selectedSubject = subjects[spinnerSubject.selectedItemPosition]
         val selectedStudyType = studyTypes[spinnerStudyType.selectedItemPosition].second
         val status = if (rbPublic.isChecked) "public" else "private"
-
+        
         Log.d("CreateStudy", "Creating study: $title, Subject: ${selectedSubject.name}, Type: $selectedStudyType, Status: $status")
-
+        
         progressBar.visibility = View.VISIBLE
         tvUploadProgress.visibility = View.VISIBLE
         btnCreateStudy.isEnabled = false
         btnSave.isEnabled = false
-
+        
         lifecycleScope.launch {
             try {
                 val uploadedFileUrls = mutableListOf<String>()
-
+                
                 // Upload files first if any
                 if (attachedFiles.isNotEmpty()) {
                     tvUploadProgress.text = "Uploading files..."
-
+                    
                     for ((index, file) in attachedFiles.withIndex()) {
                         tvUploadProgress.text = "Uploading file ${index + 1} of ${attachedFiles.size}..."
-
+                        
                         try {
                             val uri = Uri.parse(file.uri)
                             val inputStream = contentResolver.openInputStream(uri)
                             val fileBytes = inputStream?.readBytes()
                             inputStream?.close()
-
+                            
                             if (fileBytes != null) {
                                 Log.d("CreateStudy", "Uploading file: ${file.name}, size: ${fileBytes.size}, type: ${file.type}")
-
+                                
                                 val uploadResult = SupabaseClient.uploadStudyFile(
                                     fileBytes = fileBytes,
                                     fileName = file.name,
                                     mimeType = file.type
                                 )
-
+                                
                                 uploadResult.onSuccess { fileUrl ->
                                     uploadedFileUrls.add(fileUrl)
                                     Log.d("CreateStudy", "✅ File uploaded: ${file.name} -> $fileUrl")
@@ -555,16 +555,16 @@ class CreateStudyActivity : AppCompatActivity() {
                             }
                         }
                     }
-
+                    
                     Log.d("CreateStudy", "Upload completed. ${uploadedFileUrls.size} of ${attachedFiles.size} files uploaded successfully")
-
+                    
                     if (uploadedFileUrls.isEmpty() && attachedFiles.isNotEmpty()) {
                         runOnUiThread {
                             showToast("No files were uploaded successfully. Creating study without files.")
                         }
                     }
                 }
-
+                
                 // Create study with uploaded file URLs
                 tvUploadProgress.text = "Creating study..."
 
@@ -577,19 +577,19 @@ class CreateStudyActivity : AppCompatActivity() {
                     subjectId = selectedSubject.id,
                     fileUrls = uploadedFileUrls
                 )
-
+                
                 result.onSuccess { response ->
                     Log.d("CreateStudy", "Study created successfully: $response")
                     runOnUiThread {
                         showToast("Study created successfully!")
                         finish()
                     }
-
+                    
                 }.onFailure { error ->
                     Log.e("CreateStudy", "Error creating study: ${error.message}")
                     runOnUiThread {
                         showToast("Error creating study: ${error.message}")
-
+                        
                         // If authentication failed, redirect to login
                         if (error.message?.contains("401") == true || error.message?.contains("authentication") == true) {
                             sessionManager.logout()
@@ -597,14 +597,14 @@ class CreateStudyActivity : AppCompatActivity() {
                         }
                     }
                 }
-
+                
             } catch (e: Exception) {
                 Log.e("CreateStudy", "Exception creating study", e)
                 runOnUiThread {
                     showToast("Error: ${e.message}")
                 }
             }
-
+            
             runOnUiThread {
                 progressBar.visibility = View.GONE
                 tvUploadProgress.visibility = View.GONE

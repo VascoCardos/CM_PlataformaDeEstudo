@@ -288,7 +288,16 @@ class SearchResultsActivity : AppCompatActivity() {
         categoriesAdapter = CategoriesAdapter(
             categories = categoriesList,
             onSubjectClick = { subject -> showSubjectDetailsDialog(subject) },
-            onFollowClick = { subject -> toggleFollowSubject(subject) }
+            onFollowClick = { subject -> toggleFollowSubject(subject) },
+            onViewStudiesClick = { subject -> 
+                val intent = Intent(this, SubjectStudiesActivity::class.java)
+                intent.putExtra("subject_id", subject.id)
+                intent.putExtra("subject_name", subject.name)
+                startActivity(intent)
+            },
+            onViewSessionsClick = { subject -> 
+                showToast("Sessions for ${subject.name} - Coming soon!")
+            }
         )
         rvSearchResults.layoutManager = LinearLayoutManager(this)
         rvSearchResults.adapter = categoriesAdapter

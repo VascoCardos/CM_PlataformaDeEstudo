@@ -2,67 +2,103 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardSubject"
-    android:layout_width="120dp"
-    android:layout_height="100dp"
-    android:layout_marginEnd="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Subject Image -->
-        <ImageView
-            android:id="@+id/ivSubjectImage"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="4dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_subject_default" />
-
-        <!-- Subject Name -->
-        <TextView
-            android:id="@+id/tvSubjectName"
+        <!-- Top row with image, name and follow button -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivSubjectImage"
-            android:layout_marginTop="6dp"
-            android:gravity="center"
-            android:text="Subject"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:maxLines="2"
-            android:ellipsize="end" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <!-- Followers count -->
-        <TextView
-            android:id="@+id/tvFollowers"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/ivSubjectImage"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_subject_default" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvSubjectName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subject Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvFollowers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 followers"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnFollow"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                android:src="@drawable/ic_add" />
+
+        </LinearLayout>
+
+        <!-- Bottom row with Studies and Sessions buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/followers_background"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="2dp"
-            android:text="0 followers"
-            android:textColor="@color/white"
-            android:textSize="8sp" />
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
 
-        <!-- Follow button -->
-        <ImageView
-            android:id="@+id/btnFollow"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/circle_button"
-            android:padding="3dp"
-            android:src="@drawable/ic_add" />
+            <TextView
+                android:id="@+id/btnStudies"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/button_secondary"
+                android:gravity="center"
+                android:text="Studies"
+                android:textColor="@color/orange_start"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/btnSessions"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_secondary"
+                android:gravity="center"
+                android:text="Sessions"
+                android:textColor="@color/orange_start"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
