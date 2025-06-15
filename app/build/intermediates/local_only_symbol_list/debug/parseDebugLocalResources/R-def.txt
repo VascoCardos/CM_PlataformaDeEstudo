@@ -219,6 +219,7 @@ id tvLoginTitle
 id tvNameInfo
 id tvNameStatus
 id tvNoHistory
+id tvPageTitle
 id tvResultsCount
 id tvSearchQuery
 id tvSearchTerm

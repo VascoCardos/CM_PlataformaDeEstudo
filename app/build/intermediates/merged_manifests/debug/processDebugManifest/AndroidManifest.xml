@@ -57,7 +57,6 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/v_education_logo"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.EducationPlatform" >
         <activity
             android:name="com.veducation.app.PreStartActivity"

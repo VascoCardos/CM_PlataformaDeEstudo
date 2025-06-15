@@ -1073,6 +1073,7 @@ object SupabaseClient {
                 }
 
                 val validToken = tokenResult.getOrNull()!!
+                Log.d("SupabaseClient", "Using token: ${validToken.take(20)}...")
 
                 val url = URL("$SUPABASE_URL/rest/v1/rpc/delete_study")
                 val connection = url.openConnection() as HttpURLConnection
@@ -1086,6 +1087,9 @@ object SupabaseClient {
                 val jsonBody = JSONObject().apply {
                     put("study_uuid", studyId)
                 }
+
+                Log.d("SupabaseClient", "Request URL: $url")
+                Log.d("SupabaseClient", "Request body: $jsonBody")
 
                 val writer = OutputStreamWriter(connection.outputStream)
                 writer.write(jsonBody.toString())
@@ -1109,6 +1113,8 @@ object SupabaseClient {
                 if (responseCode in 200..299) {
                     Result.success(response)
                 } else {
+                    Log.e("SupabaseClient", "❌ Delete failed with code: $responseCode")
+                    Log.e("SupabaseClient", "❌ Error response: $response")
                     Result.failure(Exception("Failed to delete study: $responseCode - $response"))
                 }
             } catch (e: Exception) {
@@ -1345,6 +1351,138 @@ object SupabaseClient {
             } catch (e: Exception) {
                 Log.e("SupabaseClient", "❌ Vote Comment Error", e)
                 Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun getStudyForEdit(studyId: String): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== GET STUDY FOR EDIT ===")
+                Log.d("SupabaseClient", "Study ID: $studyId")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(tokenResult.exceptionOrNull() ?: Exception("Token validation failed"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/get_study_for_edit")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("study_uuid", studyId)
+                }
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Get Study For Edit Response Code: $responseCode")
+                Log.d("SupabaseClient", "Get Study For Edit Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Result.failure(Exception("Failed to get study for edit: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Get Study For Edit Error", e)
+                Result.failure(Exception("Connection error: ${e.message}"))
+            }
+        }
+    }
+
+    suspend fun updateStudy(
+        studyId: String,
+        title: String,
+        content: String,
+        description: String? = null,
+        status: String = "public",
+        studyType: String = "other",
+        subjectId: String
+    ): Result<String> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Log.d("SupabaseClient", "=== UPDATE STUDY ===")
+                Log.d("SupabaseClient", "Study ID: $studyId")
+                Log.d("SupabaseClient", "Title: $title")
+
+                val tokenResult = ensureValidToken()
+                if (tokenResult.isFailure) {
+                    return@withContext Result.failure(Exception("Authentication required"))
+                }
+
+                val validToken = tokenResult.getOrNull()!!
+
+                val url = URL("$SUPABASE_URL/rest/v1/rpc/update_study")
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.setRequestProperty("apikey", SUPABASE_ANON_KEY)
+                connection.setRequestProperty("Authorization", "Bearer $validToken")
+                connection.doOutput = true
+
+                val jsonBody = JSONObject().apply {
+                    put("study_uuid", studyId)
+                    put("new_title", title)
+                    put("new_content", content)
+                    if (description != null) put("new_description", description)
+                    put("new_status", status)
+                    put("new_study_type", studyType)
+                    put("new_subject_id", subjectId)
+                }
+
+                Log.d("SupabaseClient", "Request body: $jsonBody")
+
+                val writer = OutputStreamWriter(connection.outputStream)
+                writer.write(jsonBody.toString())
+                writer.flush()
+                writer.close()
+
+                val responseCode = connection.responseCode
+                val inputStream = if (responseCode >= 400) {
+                    connection.errorStream
+                } else {
+                    connection.inputStream
+                }
+
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                Log.d("SupabaseClient", "Update Study Response Code: $responseCode")
+                Log.d("SupabaseClient", "Update Study Response: $response")
+
+                if (responseCode in 200..299) {
+                    Result.success(response)
+                } else {
+                    Log.e("SupabaseClient", "❌ Failed to update study: $responseCode")
+                    Result.failure(Exception("Failed to update study: $responseCode - $response"))
+                }
+            } catch (e: Exception) {
+                Log.e("SupabaseClient", "❌ Update Study Error", e)
+                Result.failure(Exception("Error updating study: ${e.message}"))
             }
         }
     }
