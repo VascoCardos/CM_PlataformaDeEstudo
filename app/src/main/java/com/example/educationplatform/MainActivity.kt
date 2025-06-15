@@ -181,7 +181,8 @@ class MainActivity : AppCompatActivity() {
         }
         
         btnMyStudies.setOnClickListener {
-            showToast("My Studies clicked")
+            val intent = Intent(this@MainActivity, MyStudiesActivity::class.java)
+            startActivity(intent)
         }
     }
     

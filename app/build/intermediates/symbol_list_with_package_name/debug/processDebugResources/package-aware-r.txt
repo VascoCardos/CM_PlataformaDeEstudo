@@ -3286,6 +3286,7 @@ id btnConfirmPassword
 id btnContinueWithoutAccount
 id btnCreate
 id btnCreateAccount
+id btnCreateFirstStudy
 id btnCreateSession
 id btnCreateStudy
 id btnDownvote
@@ -3393,6 +3394,7 @@ id edit_query
 id edit_text_id
 id elastic
 id embed
+id emptyState
 id end
 id endToStart
 id enterAlways
@@ -3923,6 +3925,7 @@ layout activity_create_study
 layout activity_first_page
 layout activity_login
 layout activity_main
+layout activity_my_studies
 layout activity_pre_start
 layout activity_profile
 layout activity_search

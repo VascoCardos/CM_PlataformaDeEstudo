@@ -109,6 +109,10 @@
             android:name="com.veducation.app.SubjectStudiesActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.veducation.app.MyStudiesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <!-- FileProvider para partilhar ficheiros (se necessário) -->
         <provider
